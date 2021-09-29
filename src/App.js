@@ -7,6 +7,7 @@ import getPokemons from './services/pokemons';
 import IndividualPokemon from './components/IndividualPokemon';
 import ErrorNotification from './components/ErrorNotification';
 import axios from 'axios';
+import Favorite from './components/Favorite';
 
 const pageSize = 20;
 const totalCount = 898;
@@ -86,7 +87,7 @@ const App = () => {
   return (
     <div style={{ backgroundColor: '#222222' }}>
       {error && <ErrorNotification error={error}/>}
-      <AppBarPokemon setPokemon={setPokemon} pokemon={pokemon} setError={setError}/>
+      <AppBarPokemon setPokemon={setPokemon} setError={setError}/>
       <Switch>
         <Route path="/pokemons/:name">
           <IndividualPokemon pokemon={pokemonMatch} CapsFirstLetter={CapsFirstLetter}/>
@@ -106,6 +107,9 @@ const App = () => {
             onPrevious={onPrevious}
             handleSelect={handleSelect}
           />
+        </Route>
+        <Route path="/favorite">
+          <Favorite CapsFirstLetter={CapsFirstLetter} setError={setError} route="favorite"/>
         </Route>
         <Route path="/">
           <Home />

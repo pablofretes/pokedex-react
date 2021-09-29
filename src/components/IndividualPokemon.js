@@ -42,8 +42,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const IndividualPokemon = ({ pokemon, CapsFirstLetter }) => {
-    console.log(pokemon);
     const classes = useStyles();
+    
+    const isEmpty = (obj) => {
+        return Object.keys(obj).length === 0;
+    };
+
+    if(isEmpty(pokemon)){
+        return null;
+    };
+
+    console.log(pokemon);
     return (
         <div className={classes.root}>
                 <Paper className={classes.paper} elevation={8}>

@@ -3,19 +3,20 @@ import { useHistory } from 'react-router';
 import getPokemons from '../services/pokemons';
 import { Button } from '@material-ui/core';
 
-const Filter = ({ setPokemon, pokemon, setError }) => {
+const Filter = ({ setPokemon, setError, route }) => {
     const [filter, setFilter] = useState('');
     const history = useHistory();
 
     useEffect(() => {
         const fetch = async () => {
             try {
-                const searchedPokemon = await getPokemons.getPokemonByName(filter);
-                console.log(searchedPokemon);
-                setPokemon(searchedPokemon);
-                console.log(pokemon)
-                if(searchedPokemon.name === filter){
-                    history.push(`/search/${searchedPokemon.name}`)
+                if(filter){
+                    const searchedPokemon = await getPokemons.getPokemonByName(filter);
+                    console.log(searchedPokemon);
+                    setPokemon(searchedPokemon);
+                    if(searchedPokemon.name === filter){
+                        history.push(`/${route}/${searchedPokemon.name}`);
+                    };
                 }
             } catch (error) {
                 console.log(error);

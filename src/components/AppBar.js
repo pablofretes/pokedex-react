@@ -36,7 +36,10 @@ const AppBarPokemon = ({ setPokemon, pokemon, setError }) => {
           </Typography>
         </Toolbar>
         <Toolbar variant="dense">
-          <Filter setPokemon={setPokemon} pokemon={pokemon} setError={setError}/>
+          <Filter setPokemon={setPokemon} setError={setError} route="search"/>
+          <Button color="inherit" component={Link} to="/favorite" data-cy="favorite-button">
+            Favorite
+          </Button>
         </Toolbar>
       </AppBar>
     </Box>
