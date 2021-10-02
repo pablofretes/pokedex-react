@@ -1,5 +1,6 @@
 import React from 'react';
 import { Paper, makeStyles } from '@material-ui/core';
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -41,16 +42,9 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const IndividualPokemon = ({ pokemon, CapsFirstLetter }) => {
+const IndividualPokemon = ({ CapsFirstLetter }) => {
     const classes = useStyles();
-    
-    const isEmpty = (obj) => {
-        return Object.keys(obj).length === 0;
-    };
-
-    if(isEmpty(pokemon)){
-        return null;
-    };
+    const pokemon = useSelector(state => state.individualPokemon);
 
     console.log(pokemon);
     return (

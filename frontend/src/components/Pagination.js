@@ -2,6 +2,10 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { DOTS, usePagination } from '../hooks/usePagination';
+import { useSelector, useDispatch } from 'react-redux';
+import { setOffset } from '../reducers/offsetReducer';
+import { setLimit } from '../reducers/limitReducer';
+import { pageSelection } from '../reducers/currentPageReducer';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -44,8 +48,10 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Pagination = ({ onPageChange, totalCount, siblingCount = 1, currentPage, pageSize, onPrevious, onNext, handleSelect }) => {
+const Pagination = ({ totalCount, siblingCount = 1, pageSize }) => {
     const classes = useStyles();
+    const dispatch = useDispatch();
+    const currentPage = useSelector(state => state.currentPage);
 
     const paginationRange = usePagination({ currentPage, totalCount, siblingCount, pageSize });
 
@@ -53,6 +59,36 @@ const Pagination = ({ onPageChange, totalCount, siblingCount = 1, currentPage, p
 
     for(let i = 1; i <= 45; i++){
         optionsArray.push(i);
+    };
+
+    const onPageChange = (pageNumber) => {
+        console.log(pageNumber);
+        if(pageNumber === 45){
+          dispatch(setLimit(18));
+        };
+        if(pageNumber !== 45){
+          dispatch(setLimit(20))
+        };
+        dispatch(setOffset(pageNumber));
+        dispatch(pageSelection(pageNumber));
+    };
+    
+    const onNext = () => {
+        const page = currentPage + 1;
+        dispatch(setOffset(page));
+        dispatch({ type: 'INCREMENT' });
+    };
+    
+    const onPrevious = () => {
+        const page = currentPage - 1;
+        dispatch(setOffset(page));
+        dispatch({ type: 'DECREMENT' });
+    };
+    
+    const handleSelect = (event) => {
+        const page = event.target.value;
+        console.log(page);
+        dispatch(setOffset(page));
     };
 
     return (

@@ -5,6 +5,9 @@ import { Button } from '@material-ui/core';
 import * as yup from 'yup';
 import { useHistory } from 'react-router';
 import login from '../services/login';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../reducers/userReducer'; 
+import { notificationError, notificationSuccess } from '../reducers/notificationReducer';
 
 const validationSchema = yup.object().shape({
     username: yup
@@ -17,7 +20,8 @@ const validationSchema = yup.object().shape({
         .min(5, 'Username must contain at least 5 characters'),
 });
 
-const Login = ({ setUser }) => {
+const Login = () => {
+    const dispatch = useDispatch();
     const history = useHistory();
 
     const onSubmit = async (event) => {
@@ -31,12 +35,14 @@ const Login = ({ setUser }) => {
             const user = await login.login(credentials);
             if(user){
                 window.localStorage.setItem('loggedUser', JSON.stringify(user))
-                setUser(user);
+                dispatch(setUser(user));
+                dispatch(notificationSuccess('You have logged in!'))
                 login.setToken(user.token)
                 history.push('/');
             };    
         } catch (error) {
             console.log(error);
+            dispatch(notificationError('Your password or username are incorrect.'))
             return null;
         };
     };

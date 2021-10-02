@@ -2,6 +2,8 @@ import React from 'react';
 import { Button, makeStyles, AppBar, Toolbar, Typography, Box } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import Filter from './Filter';
+import { setUser } from '../reducers/userReducer';
+import { useDispatch, useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,12 +22,14 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const AppBarPokemon = ({ setPokemon, setError, user, setUser }) => {
+const AppBarPokemon = () => {
+  const dispatch = useDispatch();
   const classes = useStyles();
+  const user = useSelector(state => state.user);
 
   const handleLogOut = () => {
     window.localStorage.removeItem('loggedUser');
-    setUser(null);
+    dispatch(setUser(null));
   }
 
   return (
@@ -42,7 +46,7 @@ const AppBarPokemon = ({ setPokemon, setError, user, setUser }) => {
           </Typography>
         </Toolbar>
         <Toolbar variant="dense">
-          <Filter setPokemon={setPokemon} setError={setError} route="search"/>
+          <Filter />
           <Button color="inherit" component={Link} to="/favorite" data-cy="favorite-button">
             Favorite
           </Button>

@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 
 const width = 250
 
-const Home = ({ setPokemons }) => {
+const Home = () => {
     const classes = useStyles();
     return (
         <div className={classes.root}>

@@ -2,8 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
 import getPokemons from '../services/pokemons';
 import { Button } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
+import { getOnePokemon } from '../reducers/individualPokemonReducer';
+import { notificationError } from '../reducers/notificationReducer';
 
-const Filter = ({ setPokemon, setError, route }) => {
+const Filter = () => {
+    const dispatch = useDispatch()
     const [filter, setFilter] = useState('');
     const history = useHistory();
 
@@ -13,17 +17,14 @@ const Filter = ({ setPokemon, setError, route }) => {
                 if(filter){
                     const searchedPokemon = await getPokemons.getPokemonByName(filter);
                     console.log(searchedPokemon);
-                    setPokemon(searchedPokemon);
+                    dispatch(getOnePokemon(searchedPokemon));
                     if(searchedPokemon.name === filter){
-                        history.push(`/${route}/${searchedPokemon.name}`);
+                        history.push(`/pokemons/${searchedPokemon.name}`);
                     };
                 }
             } catch (error) {
                 console.log(error);
-                setError('That pokémon doesnt exist! Try Again!');
-                setTimeout(() => {
-                    setError(null);
-                }, 3500)
+                dispatch(notificationError('That pokémon doesnt exist! Try Again!'));
                 return null;
             }
         } 

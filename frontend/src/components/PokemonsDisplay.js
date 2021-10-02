@@ -2,6 +2,8 @@ import React from 'react';
 import Pagination from './Pagination';
 import { Grid, makeStyles, Paper } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { getOnePokemon } from '../reducers/individualPokemonReducer';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -33,15 +35,23 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const PokemonsDisplay = ({ pokemons, CapsFirstLetter, onNext, onPrevious, currentPage, totalCount, pageSize, onPageChange, handleSelect }) => {
+const PokemonsDisplay = ({ CapsFirstLetter }) => {
+    const dispatch = useDispatch();
     const classes = useStyles();
+    const pokemons = useSelector(state => state.pokemons);
     console.log(pokemons);
+    const pageSize = 20;
+    const totalCount = 898;
+
+    const handleClick = (p) => {
+        dispatch(getOnePokemon(p))
+    }
 
     return (
         <div className={classes.root}>
             <Grid container spacing={3}>
                 {pokemons && pokemons.map(p => (
-                    <Grid item xs={3} key={p.name} className={classes.gridItem} component={Link} to={`/pokemons/${p.name}`} data-cy={`pokemon-button-${p.name}`}>
+                    <Grid item xs={3} key={p.name} className={classes.gridItem} component={Link} onClick={() => handleClick(p)} to={`/pokemons/${p.name}`} data-cy={`pokemon-button-${p.name}`}>
                             <Paper className={classes.paper && classes.color} elevation={10}>
                                 <p className={classes.p}>#{p.id}</p>
                                 <p className={classes.p}>{CapsFirstLetter(p.name)}</p>
@@ -53,13 +63,8 @@ const PokemonsDisplay = ({ pokemons, CapsFirstLetter, onNext, onPrevious, curren
                 ))}
             </Grid>
             <Pagination
-                onNext={onNext}
-                currentPage={currentPage}
                 totalCount={totalCount} 
-                pageSize={pageSize} 
-                onPrevious={onPrevious}
-                onPageChange={onPageChange}
-                handleSelect={handleSelect}
+                pageSize={pageSize}
             />
         </div>
     );

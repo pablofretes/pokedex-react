@@ -5,6 +5,9 @@ import { Button } from '@material-ui/core';
 import * as yup from 'yup';
 import { useHistory } from 'react-router';
 import TextField from './TextField';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../reducers/userReducer';
+import { notificationError } from '../reducers/notificationReducer';
 
 const validationSchema = yup.object().shape({
     username: yup
@@ -22,7 +25,8 @@ const validationSchema = yup.object().shape({
         .required()
 })
 
-const SignUp = ({ setUser }) => {
+const SignUp = () => {
+    const dispatch = useDispatch();
     const history = useHistory();
 
     const onSubmit = async (event) => {
@@ -38,11 +42,12 @@ const SignUp = ({ setUser }) => {
             const user = await signUp.signUp(credentials);
             if(user){
                 window.localStorage.setItem('loggedUser', JSON.stringify(user))
-                setUser(user);
+                dispatch(setUser(user));
                 history.push('/');
             };
         } catch (error) {
             console.log(error);
+            dispatch(notificationError('Your account was not created, try again!'))
             return null;
         };
     };
