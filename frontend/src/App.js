@@ -8,6 +8,8 @@ import IndividualPokemon from './components/IndividualPokemon';
 import ErrorNotification from './components/ErrorNotification';
 import axios from 'axios';
 import Favorite from './components/Favorite';
+import Login from '../src/components/Login';
+import SignUp from '../src/components/SignUp';
 
 const pageSize = 20;
 const totalCount = 898;
@@ -19,6 +21,7 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pokemon, setPokemon] = useState({});
   const [error, setError] = useState(null);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
       const fetchPokemons = async () => {
@@ -36,6 +39,14 @@ const App = () => {
       }
       fetchPokemons();
   }, [offset, limit]);
+
+  useEffect(() => {
+    const loggedUser = window.localStorage.getItem('loggedUser');
+    if(loggedUser){
+      const user = JSON.parse(loggedUser);
+      setUser(user);
+    }
+  }, [])
 
   const CapsFirstLetter = (str) => {
     let toCapitalize = str.split(/-/);
@@ -87,7 +98,7 @@ const App = () => {
   return (
     <div style={{ backgroundColor: '#222222' }}>
       {error && <ErrorNotification error={error}/>}
-      <AppBarPokemon setPokemon={setPokemon} setError={setError}/>
+      <AppBarPokemon setPokemon={setPokemon} setError={setError} user={user} setUser={setUser}/>
       <Switch>
         <Route path="/pokemons/:name">
           <IndividualPokemon pokemon={pokemonMatch} CapsFirstLetter={CapsFirstLetter}/>
@@ -101,7 +112,7 @@ const App = () => {
             CapsFirstLetter={CapsFirstLetter} 
             currentPage={currentPage}
             totalCount={totalCount} 
-            pageSize={pageSize} 
+            pageSize={pageSize}
             onPageChange={page => handleChange(page)}
             onNext={onNext}
             onPrevious={onPrevious}
@@ -110,6 +121,12 @@ const App = () => {
         </Route>
         <Route path="/favorite">
           <Favorite CapsFirstLetter={CapsFirstLetter} setError={setError} route="favorite"/>
+        </Route>
+        <Route path="/login">
+          <Login setUser={setUser}/>
+        </Route>
+        <Route path="/signUp">
+          <SignUp setUser={setUser}/>
         </Route>
         <Route path="/">
           <Home />

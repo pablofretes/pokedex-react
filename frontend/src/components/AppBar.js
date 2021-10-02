@@ -20,8 +20,14 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const AppBarPokemon = ({ setPokemon, pokemon, setError }) => {
+const AppBarPokemon = ({ setPokemon, setError, user, setUser }) => {
   const classes = useStyles();
+
+  const handleLogOut = () => {
+    window.localStorage.removeItem('loggedUser');
+    setUser(null);
+  }
+
   return (
     <Box className={classes.root}>
       <AppBar position="static" color="secondary" className={classes.appBar}>
@@ -40,6 +46,16 @@ const AppBarPokemon = ({ setPokemon, pokemon, setError }) => {
           <Button color="inherit" component={Link} to="/favorite" data-cy="favorite-button">
             Favorite
           </Button>
+          {user !== null ? (
+            <Button onClick={handleLogOut} color="inherit" to="/login" data-cy="logout-button" component={Link}>
+              Log Out
+            </Button>
+          ) : (
+            <div style={{ alignItems: 'flex-end'}}>
+              <Button color="inherit" component={Link} to="/login" data-cy="login-button">Log In</Button>
+              <Button color="inherit" component={Link} to="/signUp" data-cy="signUp-button">Sign Up</Button>
+            </div>
+          )}
         </Toolbar>
       </AppBar>
     </Box>
