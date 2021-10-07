@@ -37,8 +37,8 @@ const Home = () => {
     const classes = useStyles();
     return (
         <div className={classes.root}>
-            <img className={classes.logo} src={pokedex} alt='pokedex logo'/>
-            <Button data-cy="pokedex-pikachu" className={classes.pokedex} component={Link} to="/pokemons">
+            <img className={classes.logo} src={pokedex} alt='pokedex logo' data-testid='pokedex-logo'/>
+            <Button data-cy="pokedex-pikachu" className={classes.pokedex} component={Link} to="/pokemons" data-testid='pikachu-button'>
                 <img  className={classes.pikachu} src={pikachu} alt='imagen pikachu'/>
             </Button>
         </div>

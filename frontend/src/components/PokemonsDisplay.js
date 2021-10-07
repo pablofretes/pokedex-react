@@ -45,12 +45,13 @@ const PokemonsDisplay = ({ CapsFirstLetter }) => {
 
     const handleClick = (p) => {
         dispatch(getOnePokemon(p))
-    }
+    };
 
     return (
         <div className={classes.root}>
-            <Grid container spacing={3}>
-                {pokemons && pokemons.map(p => (
+                {pokemons && (
+                    <Grid container spacing={3}>
+                        {pokemons.map(p => (
                     <Grid item xs={3} key={p.name} className={classes.gridItem} component={Link} onClick={() => handleClick(p)} to={`/pokemons/${p.name}`} data-cy={`pokemon-button-${p.name}`}>
                             <Paper className={classes.paper && classes.color} elevation={10}>
                                 <p className={classes.p}>#{p.id}</p>
@@ -61,7 +62,8 @@ const PokemonsDisplay = ({ CapsFirstLetter }) => {
                             </Paper>
                     </Grid>
                 ))}
-            </Grid>
+                    </Grid>
+                )}
             <Pagination
                 totalCount={totalCount} 
                 pageSize={pageSize}

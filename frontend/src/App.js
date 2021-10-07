@@ -8,9 +8,11 @@ import Notification from './components/Notification';
 import Favorite from './components/Favorite';
 import Login from '../src/components/Login';
 import SignUp from '../src/components/SignUp';
+import Reviews from '../src/components/Reviews';
 import { fetchPokemons } from './reducers/pokemonsReducer';
-import { setUser } from './reducers/userReducer'; 
 import { useDispatch, useSelector } from 'react-redux';
+import { existingLogin } from './reducers/loginReducer';
+import { initReviews } from './reducers/reviewsReducer';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -20,19 +22,18 @@ const App = () => {
   useEffect(() => {
     //FETCHES 20 OBJECTS THAT CONTAIN AN URL TO AN INDIVIDUAL POKEMON
     dispatch(fetchPokemons(limit, offset));
-  }, [offset, limit, dispatch]);
+  }, [limit, offset, dispatch]);
 
   useEffect(() => {
-    //IF THERE IS A LOGGED USER SETS USER STATE
-    const loggedUser = window.localStorage.getItem('loggedUser');
-    if(loggedUser){
-      const user = JSON.parse(loggedUser);
-      dispatch(setUser(user));
-    }
+    dispatch(existingLogin());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(initReviews());
   }, [dispatch])
 
   const CapsFirstLetter = (str) => {
-    //SOME POKEMONS' STATS ARE SEPARATED BY A '-'. THIS FUNCTION ELIMINATES IT.
+    //SOME POKEMONS' STATS ARE SEPARATED BY A '-'. THIS FUNCTION ELIMINATES IT AND CAPITALIZES THE FIRST LETTER OF EACH WORD.
     let toCapitalize = str.split(/-/);
 
     for (let i = 0; i < toCapitalize.length; i++) {
@@ -53,9 +54,7 @@ const App = () => {
           <IndividualPokemon CapsFirstLetter={CapsFirstLetter}/>
         </Route>
         <Route path="/pokemons">
-          <PokemonsDisplay
-            CapsFirstLetter={CapsFirstLetter}
-          />
+          <PokemonsDisplay CapsFirstLetter={CapsFirstLetter}/>
         </Route>
         <Route path="/favorite">
           <Favorite CapsFirstLetter={CapsFirstLetter}/>
@@ -65,6 +64,9 @@ const App = () => {
         </Route>
         <Route path="/signUp">
           <SignUp />
+        </Route>
+        <Route path="/reviews">
+          <Reviews />
         </Route>
         <Route path="/">
           <Home />

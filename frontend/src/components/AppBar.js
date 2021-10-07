@@ -2,8 +2,8 @@ import React from 'react';
 import { Button, makeStyles, AppBar, Toolbar, Typography, Box } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import Filter from './Filter';
-import { setUser } from '../reducers/userReducer';
 import { useDispatch, useSelector } from 'react-redux';
+import { logoutUser } from '../reducers/loginReducer';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,11 +25,10 @@ const useStyles = makeStyles((theme) => ({
 const AppBarPokemon = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
-  const user = useSelector(state => state.user);
+  const user = useSelector(state => state.login);
 
   const handleLogOut = () => {
-    window.localStorage.removeItem('loggedUser');
-    dispatch(setUser(null));
+    dispatch(logoutUser);
   }
 
   return (
@@ -46,14 +45,17 @@ const AppBarPokemon = () => {
           </Typography>
         </Toolbar>
         <Toolbar variant="dense">
-          <Filter />
+          <Filter route='pokemons'/>
           <Button color="inherit" component={Link} to="/favorite" data-cy="favorite-button">
             Favorite
           </Button>
           {user !== null ? (
-            <Button onClick={handleLogOut} color="inherit" to="/login" data-cy="logout-button" component={Link}>
-              Log Out
-            </Button>
+            <div>
+              <Button onClick={handleLogOut} color="inherit" to="/login" data-cy="logout-button" component={Link} className="logout-button">
+                Log Out
+              </Button>
+              <Button color="inherit" component={Link} to="/reviews" data-cy="reviews-button">Reviews</Button>
+            </div>
           ) : (
             <div style={{ alignItems: 'flex-end'}}>
               <Button color="inherit" component={Link} to="/login" data-cy="login-button">Log In</Button>

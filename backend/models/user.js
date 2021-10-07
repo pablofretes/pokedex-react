@@ -16,6 +16,12 @@ const schema = new mongoose.Schema({
         required: true,
         minlength: 5
     },
+    reviews: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Review'
+        },
+    ],
     favoritePokemon: String,
 });
 

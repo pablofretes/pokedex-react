@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles, Paper, Grid } from '@material-ui/core';
-import Filter from './Filter';
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -48,19 +48,19 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const Favorite = ({ CapsFirstLetter, setError, route }) => {
+const Favorite = ({ CapsFirstLetter }) => {
     const classes = useStyles();
-    const [pokemon, setPokemon] = useState({});
+    const favorite = useSelector(state => state.favorite);
+    console.log(favorite);
 
     const isEmpty = (obj) => {
-        return Object.keys(obj).length === 0;
+        return obj && Object.keys(obj).length === 0;
     }
 
-    if(isEmpty(pokemon)){
+    if(isEmpty(favorite)){
         return (
             <div>
                 <p>You don't have a favorite pokémon right now! Please pick One!</p>
-                <Filter setPokemon={setPokemon} setError={setError} route={route}/>
             </div>
 
         )
@@ -68,18 +68,17 @@ const Favorite = ({ CapsFirstLetter, setError, route }) => {
 
     return (
         <div>
-            {!isEmpty(pokemon) && 
+            {!isEmpty(favorite) && 
                 <div>
                     <p className={classes.text}>Your Favorite Pokémon Is:</p>
                     
                     <Paper className={classes.paper}>
-                        <img src={pokemon.sprites.other["official-artwork"]["front_default"]} alt={`${pokemon.name}'s sprite`} className={classes.image}></img>
-                        {pokemon.types.map(t => <div className={classes.type} key={t.type.name}>{t.type.name.toUpperCase()}</div>)}
-                        <div className={classes.abilities}>Abilities: {pokemon.abilities.map(a => <Grid xs={3} key={a.ability.name} className={classes.text}>{CapsFirstLetter(a.ability.name)}</Grid>)}</div>
-                        <p className={classes.text}>Height: {pokemon.height}</p>
-                        <p className={classes.text}>Weight: {pokemon.weight}</p>
+                        <img src={favorite.sprites.other["official-artwork"]["front_default"]} alt={`${favorite.name}'s sprite`} className={classes.image}></img>
+                        {favorite.types.map(t => <div className={classes.type} key={t.type.name}>{t.type.name.toUpperCase()}</div>)}
+                        <div className={classes.abilities}>Abilities: {favorite.abilities.map(a => <Grid xs={3} key={a.ability.name} className={classes.text}>{CapsFirstLetter(a.ability.name)}</Grid>)}</div>
+                        <p className={classes.text}>Height: {favorite.height}</p>
+                        <p className={classes.text}>Weight: {favorite.weight}</p>
                         <p className={classes.text}>If you want to pick a new favorite Pokémon, use this search bar!</p>
-                        <Filter setPokemon={setPokemon} setError={setError} route={route}/>
                     </Paper>
                 </div>
             }

@@ -6,8 +6,12 @@ import offsetReducer from './reducers/offsetReducer';
 import limitReducer from './reducers/limitReducer';
 import currentPageReducer from './reducers/currentPageReducer';
 import individualPokemonReducer from './reducers/individualPokemonReducer';
-import userReducer from './reducers/userReducer';
 import notificationReducer from './reducers/notificationReducer';
+import loginReducer from './reducers/loginReducer';
+import userReducer from './reducers/userReducer';
+import filterReducer from './reducers/filterReducer'
+import favoriteReducer from './reducers/favoriteReducer'
+import reviewsReducer from './reducers/reviewsReducer';
 
 const reducer = combineReducers({
     pokemons: pokemonsReducer,
@@ -15,8 +19,12 @@ const reducer = combineReducers({
     limit: limitReducer,
     currentPage: currentPageReducer,
     individualPokemon: individualPokemonReducer,
+    login: loginReducer,
+    notification: notificationReducer,
     user: userReducer,
-    notification: notificationReducer
+    filter: filterReducer,
+    favorite: favoriteReducer,
+    reviews: reviewsReducer
 });
 
 const store = createStore(
@@ -24,9 +32,9 @@ const store = createStore(
     composeWithDevTools(applyMiddleware(thunk))
 );
 
-store.subscribe(() => {
+/*store.subscribe(() => {
     const storeNow = store.getState();
     console.log(storeNow);
-})
+})*/
 
 export default store;

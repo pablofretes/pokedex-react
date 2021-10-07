@@ -1,6 +1,9 @@
 import React from 'react';
-import { Paper, makeStyles } from '@material-ui/core';
-import { useSelector } from 'react-redux';
+import { Paper, makeStyles, Button } from '@material-ui/core';
+import { useSelector, useDispatch } from 'react-redux';
+import { setFavorite } from '../reducers/favoriteReducer';
+import { useHistory } from 'react-router';
+import NewReview from './NewReview';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -43,8 +46,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const IndividualPokemon = ({ CapsFirstLetter }) => {
+    const dispatch = useDispatch();
     const classes = useStyles();
+    const history = useHistory();
     const pokemon = useSelector(state => state.individualPokemon);
+
+    const handleClick = (p) => {
+        dispatch(setFavorite(p));
+        history.push('/favorite')
+    }
 
     console.log(pokemon);
     return (
@@ -59,6 +69,8 @@ const IndividualPokemon = ({ CapsFirstLetter }) => {
                     {pokemon.stats.map(s => (
                         <p className={classes.text} key={s.stat.name}>{CapsFirstLetter(s.stat.name)}: {s.base_stat}</p>
                     ))}
+                    <Button onClick={() => handleClick(pokemon)}>Set as Favorite!</Button>
+                    <NewReview />
                 </Paper>
         </div>
     );

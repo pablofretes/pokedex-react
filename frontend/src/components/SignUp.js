@@ -1,13 +1,11 @@
 import React from 'react';
-import signUp from '../services/signUp';
-import { Field, Formik, Form } from 'formik';
+import { Field, Formik, Form, ErrorMessage } from 'formik';
 import { Button } from '@material-ui/core';
 import * as yup from 'yup';
 import { useHistory } from 'react-router';
 import TextField from './TextField';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../reducers/userReducer';
-import { notificationError } from '../reducers/notificationReducer';
 
 const validationSchema = yup.object().shape({
     username: yup
@@ -18,8 +16,8 @@ const validationSchema = yup.object().shape({
     password: yup
         .string()
         .required()
-        .min(5, 'Username must contain at least 5 characters')
-        .max(20, 'Username must not contain more than 20 characters'),
+        .min(5, 'Password must contain at least 5 characters')
+        .max(20, 'Password must not contain more than 20 characters'),
     name: yup
         .string()
         .required()
@@ -30,26 +28,14 @@ const SignUp = () => {
     const history = useHistory();
 
     const onSubmit = async (event) => {
-        event.preventDefault();
-        
+        console.log(event)
         const credentials = {
             username: event.username,
             password: event.password,
             name: event.name
         };
-
-        try {
-            const user = await signUp.signUp(credentials);
-            if(user){
-                window.localStorage.setItem('loggedUser', JSON.stringify(user))
-                dispatch(setUser(user));
-                history.push('/');
-            };
-        } catch (error) {
-            console.log(error);
-            dispatch(notificationError('Your account was not created, try again!'))
-            return null;
-        };
+        dispatch(setUser(credentials));
+        history.push('/');
     };
 
     return (
@@ -59,8 +45,8 @@ const SignUp = () => {
                 password:'',
                 name:''
             }}
-            onSubmit={onSubmit}
             validationSchema={validationSchema}
+            onSubmit={onSubmit}
         >
             <Form className="form ui">
                 <Field
@@ -69,21 +55,30 @@ const SignUp = () => {
                     name="username"
                     component={TextField}
                 />
+                <div style={{ color:'red' }}>
+                    <ErrorMessage name="username" />
+                </div>
                 <Field
                     label="Password"
                     placeholder="Password"
                     name="password"
                     component={TextField}
                 />
+                <div style={{ color:'red' }}>
+                    <ErrorMessage name="password" />
+                </div>
                 <Field
-                    label="Name"
-                    placeholder="Name"
+                    label="name"
+                    placeholder="name"
                     name="name"
                     component={TextField}
                 />
+                <div style={{ color:'red' }}>
+                    <ErrorMessage name="password" />
+                </div>
                 <Button
                     type="submit"
-                    color="pink"
+                    data-cy="button-signUp"
                 >
                     Sign Up
                 </Button>

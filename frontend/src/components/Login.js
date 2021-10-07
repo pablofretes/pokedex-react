@@ -4,10 +4,8 @@ import { Field, Formik, Form } from 'formik';
 import { Button } from '@material-ui/core';
 import * as yup from 'yup';
 import { useHistory } from 'react-router';
-import login from '../services/login';
 import { useDispatch } from 'react-redux';
-import { setUser } from '../reducers/userReducer'; 
-import { notificationError, notificationSuccess } from '../reducers/notificationReducer';
+import { newLogin } from '../reducers/loginReducer';
 
 const validationSchema = yup.object().shape({
     username: yup
@@ -30,22 +28,9 @@ const Login = () => {
             username: event.username,
             password: event.password,
         };
-
-        try {
-            const user = await login.login(credentials);
-            if(user){
-                window.localStorage.setItem('loggedUser', JSON.stringify(user))
-                dispatch(setUser(user));
-                dispatch(notificationSuccess('You have logged in!'))
-                login.setToken(user.token)
-                history.push('/');
-            };    
-        } catch (error) {
-            console.log(error);
-            dispatch(notificationError('Your password or username are incorrect.'))
-            return null;
-        };
-    };
+        dispatch(newLogin(credentials))
+        history.push('/');
+    }
 
     return(
         <Formik

@@ -13,5 +13,9 @@ describe('Pokedex app', function (){
     it('pokedex links to pokemons grid', function () {
         cy.get('[data-cy=pokedex-button]').click();
         cy.contains('Bulbasaur');
+        cy.contains('#1');
+        cy.contains('#19');
+        cy.should('not.have.value', 'Pikachu');
+        cy.should('not.have.value', '#21');
     });
 })

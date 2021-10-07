@@ -89,6 +89,7 @@ const Pagination = ({ totalCount, siblingCount = 1, pageSize }) => {
         const page = event.target.value;
         console.log(page);
         dispatch(setOffset(page));
+        dispatch(pageSelection(page));
     };
 
     return (

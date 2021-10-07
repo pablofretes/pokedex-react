@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router';
 import getPokemons from '../services/pokemons';
 import { Button } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getOnePokemon } from '../reducers/individualPokemonReducer';
 import { notificationError } from '../reducers/notificationReducer';
+import { setFilter } from '../reducers/filterReducer';
 
-const Filter = () => {
-    const dispatch = useDispatch()
-    const [filter, setFilter] = useState('');
+const Filter = ({ route }) => {
+    const dispatch = useDispatch();
+    const filter = useSelector(state => state.filter);
     const history = useHistory();
 
     useEffect(() => {
@@ -19,7 +20,7 @@ const Filter = () => {
                     console.log(searchedPokemon);
                     dispatch(getOnePokemon(searchedPokemon));
                     if(searchedPokemon.name === filter){
-                        history.push(`/pokemons/${searchedPokemon.name}`);
+                        history.push(`/${route}/${searchedPokemon.name}`);
                     };
                 }
             } catch (error) {
@@ -37,14 +38,14 @@ const Filter = () => {
         console.log(event.target.filterInput.value)
         const pokemon = event.target.filterInput.value;
         const lowercasePokemon = pokemon.toLowerCase();
-        setFilter(lowercasePokemon);
+        dispatch(setFilter(lowercasePokemon));
     };//
 
     return (
         <div>
             <form onSubmit={handleChange}>
-                <input placeholder='Search...' name="filterInput"/>
-                <Button type="submit" >Search</Button>
+                <input placeholder='Search...' name="filterInput" data-cy="searchBar"/>
+                <Button type="submit" data-cy="searchBar-button">Search</Button>
             </form>
         </div>
     );
