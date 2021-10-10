@@ -42,11 +42,23 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#c2185b',
         borderRadius: 60,
         marginBottom: 9
+    },
+    favorite: {
+        backgroundColor: '#222222',
     }
 }));
 
+<<<<<<< Updated upstream:frontend/src/components/IndividualPokemon.js
 const IndividualPokemon = ({ CapsFirstLetter }) => {
     const dispatch = useDispatch();
+=======
+<<<<<<< Updated upstream:src/components/IndividualPokemon.js
+const IndividualPokemon = ({ pokemon, CapsFirstLetter }) => {
+=======
+const IndividualPokemon = ({ capsFirstLetter }) => {
+    const dispatch = useDispatch();
+>>>>>>> Stashed changes:frontend/src/components/IndividualPokemon.js
+>>>>>>> Stashed changes:src/components/IndividualPokemon.js
     const classes = useStyles();
     const history = useHistory();
     const pokemon = useSelector(state => state.individualPokemon);
@@ -65,9 +77,9 @@ const IndividualPokemon = ({ CapsFirstLetter }) => {
                     <img className={classes.image} alt={`${pokemon.name}'s sprite`} src={pokemon.sprites.other["dream_world"]["front_default"]}/> :
                     <img className={classes.image} alt={`${pokemon.name}'s sprite`} src={pokemon.sprites.other["official-artwork"]["front_default"]}/>}
                     <p className={classes.text}>#{pokemon.id}</p>
-                    <p className={classes.text}>{CapsFirstLetter(pokemon.name)}</p>
+                    <p className={classes.text}>{capsFirstLetter(pokemon.name)}</p>
                     {pokemon.stats.map(s => (
-                        <p className={classes.text} key={s.stat.name}>{CapsFirstLetter(s.stat.name)}: {s.base_stat}</p>
+                        <p className={classes.text} key={s.stat.name}>{capsFirstLetter(s.stat.name)}: {s.base_stat}</p>
                     ))}
                     <Button onClick={() => handleClick(pokemon)}>Set as Favorite!</Button>
                     <NewReview />

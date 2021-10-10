@@ -61,14 +61,26 @@ const Pagination = ({ totalCount, siblingCount = 1, pageSize }) => {
         optionsArray.push(i);
     };
 
+<<<<<<< Updated upstream:frontend/src/components/Pagination.js
     const onPageChange = (pageNumber) => {
         console.log(pageNumber);
         if(pageNumber === 45){
+=======
+<<<<<<< Updated upstream:src/components/Pagination.js
+=======
+    const onPageChange = (pageNumber) => {
+        console.log(pageNumber);
+        /*if(pageNumber === 45){
+>>>>>>> Stashed changes:src/components/Pagination.js
           dispatch(setLimit(18));
         };
         if(pageNumber !== 45){
           dispatch(setLimit(20))
+<<<<<<< Updated upstream:frontend/src/components/Pagination.js
         };
+=======
+        };*/
+>>>>>>> Stashed changes:src/components/Pagination.js
         dispatch(setOffset(pageNumber));
         dispatch(pageSelection(pageNumber));
     };
@@ -92,6 +104,10 @@ const Pagination = ({ totalCount, siblingCount = 1, pageSize }) => {
         dispatch(pageSelection(page));
     };
 
+<<<<<<< Updated upstream:frontend/src/components/Pagination.js
+=======
+>>>>>>> Stashed changes:frontend/src/components/Pagination.js
+>>>>>>> Stashed changes:src/components/Pagination.js
     return (
         <div className={classes.root}>
             {currentPage === 1 ? null : (

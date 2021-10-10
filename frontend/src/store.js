@@ -32,9 +32,16 @@ const store = createStore(
     composeWithDevTools(applyMiddleware(thunk))
 );
 
+<<<<<<< Updated upstream
 /*store.subscribe(() => {
     const storeNow = store.getState();
     console.log(storeNow);
 })*/
+=======
+store.subscribe(() => {
+    const storeNow = store.getState().pokemons;
+    console.log(storeNow);
+});
+>>>>>>> Stashed changes
 
 export default store;

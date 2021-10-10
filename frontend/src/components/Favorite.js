@@ -48,7 +48,15 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
+<<<<<<< Updated upstream:frontend/src/components/Favorite.js
 const Favorite = ({ CapsFirstLetter }) => {
+=======
+<<<<<<< Updated upstream:src/components/Favorite.js
+const Favorite = ({ CapsFirstLetter, setError, route }) => {
+=======
+const Favorite = ({ capsFirstLetter }) => {
+>>>>>>> Stashed changes:frontend/src/components/Favorite.js
+>>>>>>> Stashed changes:src/components/Favorite.js
     const classes = useStyles();
     const favorite = useSelector(state => state.favorite);
     console.log(favorite);
@@ -73,11 +81,27 @@ const Favorite = ({ CapsFirstLetter }) => {
                     <p className={classes.text}>Your Favorite Pokémon Is:</p>
                     
                     <Paper className={classes.paper}>
+<<<<<<< Updated upstream:frontend/src/components/Favorite.js
                         <img src={favorite.sprites.other["official-artwork"]["front_default"]} alt={`${favorite.name}'s sprite`} className={classes.image}></img>
                         {favorite.types.map(t => <div className={classes.type} key={t.type.name}>{t.type.name.toUpperCase()}</div>)}
                         <div className={classes.abilities}>Abilities: {favorite.abilities.map(a => <Grid xs={3} key={a.ability.name} className={classes.text}>{CapsFirstLetter(a.ability.name)}</Grid>)}</div>
                         <p className={classes.text}>Height: {favorite.height}</p>
                         <p className={classes.text}>Weight: {favorite.weight}</p>
+=======
+<<<<<<< Updated upstream:src/components/Favorite.js
+                        <img src={pokemon.sprites.other["official-artwork"]["front_default"]} alt={`${pokemon.name}'s sprite`} className={classes.image}></img>
+                        {pokemon.types.map(t => <div className={classes.type} key={t.type.name}>{t.type.name.toUpperCase()}</div>)}
+                        <div className={classes.abilities}>Abilities: {pokemon.abilities.map(a => <Grid xs={3} key={a.ability.name} className={classes.text}>{CapsFirstLetter(a.ability.name)}</Grid>)}</div>
+                        <p className={classes.text}>Height: {pokemon.height}</p>
+                        <p className={classes.text}>Weight: {pokemon.weight}</p>
+=======
+                        <img src={favorite.sprites.other["official-artwork"]["front_default"]} alt={`${favorite.name}'s sprite`} className={classes.image}></img>
+                        {favorite.types.map(t => <div className={classes.type} key={t.type.name}>{t.type.name.toUpperCase()}</div>)}
+                        <div className={classes.abilities}>Abilities: {favorite.abilities.map(a => <Grid xs={3} key={a.ability.name} className={classes.text}>{capsFirstLetter(a.ability.name)}</Grid>)}</div>
+                        <p className={classes.text}>Height: {favorite.height}</p>
+                        <p className={classes.text}>Weight: {favorite.weight}</p>
+>>>>>>> Stashed changes:frontend/src/components/Favorite.js
+>>>>>>> Stashed changes:src/components/Favorite.js
                         <p className={classes.text}>If you want to pick a new favorite Pokémon, use this search bar!</p>
                     </Paper>
                 </div>
