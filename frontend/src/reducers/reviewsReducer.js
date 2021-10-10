@@ -15,13 +15,6 @@ const reviewsReducer = (state = [], action) => {
 
 export const initReviews = () => {
     return async dispatch => {
-<<<<<<< Updated upstream
-        const reviews = await reviewsService.getAll();
-        dispatch({
-            type: 'INIT_REVIEWS',
-            data: reviews,
-        });
-=======
         try {
             const reviews = await reviewsService.getAll();
             dispatch({
@@ -33,7 +26,6 @@ export const initReviews = () => {
             return null;
         }
 
->>>>>>> Stashed changes
     };
 };
 

@@ -1,26 +1,17 @@
 import getPokemons from '../services/pokemons';
 import axios from 'axios';
-<<<<<<< Updated upstream
-
-const pokemonsReducer = (state = [], action) => {
-    console.log('state is:', state)
-    switch(action.type){
-        case 'INIT_POKEMONS':
-=======
 import { loadPokemonsFromLS, savePokemonsList } from '../utils/localStoragePokemons';
 
 const pokemonsReducer = (state = [], action) => {
     switch(action.type){
         case 'INIT_POKEMONS':
             console.log(action);
->>>>>>> Stashed changes
             return action.data;
         default:
             return state;
     };
 };
 
-<<<<<<< Updated upstream
 export const fetchPokemons = (limit, offset) => {
     return async dispatch => {
         try {
@@ -41,7 +32,6 @@ export const fetchPokemons = (limit, offset) => {
         }
     };
 };
-=======
 export const initPokemons = (pokemons) => {
     return { type: 'INIT_POKEMONS', data: pokemons };
 };
@@ -90,6 +80,5 @@ export const fetchPokemons = (limit, offset) => {
         };
     };   
 };*/
->>>>>>> Stashed changes
 
 export default pokemonsReducer;

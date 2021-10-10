@@ -48,17 +48,8 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-<<<<<<< Updated upstream:frontend/src/components/IndividualPokemon.js
-const IndividualPokemon = ({ CapsFirstLetter }) => {
-    const dispatch = useDispatch();
-=======
-<<<<<<< Updated upstream:src/components/IndividualPokemon.js
-const IndividualPokemon = ({ pokemon, CapsFirstLetter }) => {
-=======
 const IndividualPokemon = ({ capsFirstLetter }) => {
     const dispatch = useDispatch();
->>>>>>> Stashed changes:frontend/src/components/IndividualPokemon.js
->>>>>>> Stashed changes:src/components/IndividualPokemon.js
     const classes = useStyles();
     const history = useHistory();
     const pokemon = useSelector(state => state.individualPokemon);

@@ -43,11 +43,8 @@ export const newLogin = (credentials) => {
     try {
       const userLog = await loginService.login(credentials);
       window.localStorage.setItem('loggedUser', JSON.stringify(userLog));
-<<<<<<< Updated upstream
       loginService.setToken(userLog.token);
-=======
       reviewsService.setToken(userLog.token);
->>>>>>> Stashed changes
       dispatch({
         type: 'LOG_IN',
         data: userLog

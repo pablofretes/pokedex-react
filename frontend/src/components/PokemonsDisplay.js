@@ -35,38 +35,18 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-<<<<<<< Updated upstream:frontend/src/components/PokemonsDisplay.js
-const PokemonsDisplay = ({ CapsFirstLetter }) => {
-    const dispatch = useDispatch();
-=======
-<<<<<<< Updated upstream:src/components/PokemonsDisplay.js
-const PokemonsDisplay = ({ pokemons, CapsFirstLetter, onNext, onPrevious, currentPage, totalCount, pageSize, onPageChange, handleSelect }) => {
-=======
 const PokemonsDisplay = ({ capsFirstLetter }) => {
     const dispatch = useDispatch();
->>>>>>> Stashed changes:frontend/src/components/PokemonsDisplay.js
->>>>>>> Stashed changes:src/components/PokemonsDisplay.js
     const classes = useStyles();
     const pokemons = useSelector(state => state.pokemons);
     console.log(pokemons);
-<<<<<<< Updated upstream:frontend/src/components/PokemonsDisplay.js
-=======
-<<<<<<< Updated upstream:src/components/PokemonsDisplay.js
-=======
->>>>>>> Stashed changes:src/components/PokemonsDisplay.js
     const pageSize = 20;
     const totalCount = 898;
 
     const handleClick = (p) => {
-<<<<<<< Updated upstream:frontend/src/components/PokemonsDisplay.js
-        dispatch(getOnePokemon(p))
-    };
-=======
         dispatch(getOnePokemon(p));
     };
->>>>>>> Stashed changes:frontend/src/components/PokemonsDisplay.js
->>>>>>> Stashed changes:src/components/PokemonsDisplay.js
-
+    
     return (
         <div className={classes.root}>
                 {pokemons && (

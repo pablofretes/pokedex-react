@@ -52,11 +52,6 @@ const AppBarPokemon = () => {
           <Button color="inherit" component={Link} to="/favorite" data-cy="favorite-button">
             Favorite
           </Button>
-<<<<<<< Updated upstream:frontend/src/components/AppBar.js
-=======
-<<<<<<< Updated upstream:src/components/AppBar.js
-=======
->>>>>>> Stashed changes:src/components/AppBar.js
           {user !== null ? (
             <div>
               <Button onClick={handleLogOut} color="inherit" to="/login" data-cy="logout-button" component={Link} className="logout-button">
@@ -65,20 +60,11 @@ const AppBarPokemon = () => {
               <Button color="inherit" component={Link} to="/reviews" data-cy="reviews-button">Reviews</Button>
             </div>
           ) : (
-<<<<<<< Updated upstream:frontend/src/components/AppBar.js
-            <div style={{ alignItems: 'flex-end'}}>
-              <Button color="inherit" component={Link} to="/login" data-cy="login-button">Log In</Button>
-              <Button color="inherit" component={Link} to="/signUp" data-cy="signUp-button">Sign Up</Button>
-            </div>
-          )}
-=======
             <div>
               <Button className={classes.button} color="inherit" component={Link} to="/login" data-cy="login-button">Log In</Button>
               <Button className={classes.button} color="inherit" component={Link} to="/signUp" data-cy="signUp-button">Sign Up</Button>
             </div>
           )}
->>>>>>> Stashed changes:frontend/src/components/AppBar.js
->>>>>>> Stashed changes:src/components/AppBar.js
         </Toolbar>
       </AppBar>
     </Box>
