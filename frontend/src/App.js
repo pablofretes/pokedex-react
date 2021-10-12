@@ -9,7 +9,7 @@ import Favorite from './components/Favorite';
 import Login from '../src/components/Login';
 import SignUp from '../src/components/SignUp';
 import Reviews from '../src/components/Reviews';
-import { fetchEverything, initPokemons } from './reducers/pokemonsReducer';
+import { fetchEverything } from './reducers/pokemonsReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { existingLogin } from './reducers/loginReducer';
 
@@ -20,11 +20,7 @@ const App = () => {
   
   useEffect(() => {
     //FETCHES 20 OBJECTS THAT CONTAIN AN URL TO AN INDIVIDUAL POKEMON
-    const promesa = Promise.resolve(fetchEverything(limit, offset));
-    promesa.then((value) => {
-      console.log(value)
-      dispatch(initPokemons(value))
-    })
+    fetchEverything(limit, offset, dispatch)
   }, [limit, offset, dispatch]);
 
   useEffect(() => {

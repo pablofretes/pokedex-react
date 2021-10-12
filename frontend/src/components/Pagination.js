@@ -52,24 +52,25 @@ const Pagination = ({ totalCount, siblingCount = 1, pageSize }) => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const currentPage = useSelector(state => state.currentPage);
+    console.log(currentPage);
 
     const paginationRange = usePagination({ currentPage, totalCount, siblingCount, pageSize });
 
     let optionsArray = [];
 
+    //JUST AN ARRAY TO BE ABLE TO SELECT ANY PAGE INSTEAD OF CLICKING MANY TIMES TO GO TO A SPECIFIC PAGE
     for(let i = 1; i <= 45; i++){
         optionsArray.push(i);
     };
 
     const onPageChange = (pageNumber) => {
         console.log(pageNumber);
-        /*if(pageNumber === 45){
->>>>>>> Stashed changes:src/components/Pagination.js
+        if(pageNumber === 45){
           dispatch(setLimit(18));
         };
         if(pageNumber !== 45){
           dispatch(setLimit(20))
-        };*/
+        };
         dispatch(setOffset(pageNumber));
         dispatch(pageSelection(pageNumber));
     };
@@ -116,8 +117,8 @@ const Pagination = ({ totalCount, siblingCount = 1, pageSize }) => {
                 <Button className={classes.nextPrevious} onClick={onNext} data-cy='next-button'>&gt;</Button>
             )}
             <select onChange={handleSelect} style={{ marginLeft: 10 }}>
-                {optionsArray.map(pageNumber => {
-                    return <option value={pageNumber} >{pageNumber}</option>
+                {optionsArray.map((pageNumber, i) => {
+                    return <option value={pageNumber} key={i}>{pageNumber}</option>
                 })}
             </select>
         </div>

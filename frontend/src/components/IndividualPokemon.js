@@ -59,22 +59,28 @@ const IndividualPokemon = ({ capsFirstLetter }) => {
         history.push('/favorite')
     }
 
-    console.log(pokemon);
+    const isEmpty = (obj) => {
+        return obj && Object.keys(obj).length === 0;
+    }
+
     return (
-        <div className={classes.root}>
-                <Paper className={classes.paper} elevation={8}>
-                    {pokemon.types.map(t => <div className={classes.type}>{t.type.name.toUpperCase()}</div>)}
-                    {pokemon.sprites.other["dream_world"]["front_default"] !== null ? 
-                    <img className={classes.image} alt={`${pokemon.name}'s sprite`} src={pokemon.sprites.other["dream_world"]["front_default"]}/> :
-                    <img className={classes.image} alt={`${pokemon.name}'s sprite`} src={pokemon.sprites.other["official-artwork"]["front_default"]}/>}
-                    <p className={classes.text}>#{pokemon.id}</p>
-                    <p className={classes.text}>{capsFirstLetter(pokemon.name)}</p>
-                    {pokemon.stats.map(s => (
-                        <p className={classes.text} key={s.stat.name}>{capsFirstLetter(s.stat.name)}: {s.base_stat}</p>
-                    ))}
-                    <Button onClick={() => handleClick(pokemon)}>Set as Favorite!</Button>
-                    <NewReview />
-                </Paper>
+        <div>
+            {isEmpty(pokemon) ? <p>Loading...</p> : 
+                (<div className={classes.root}>
+                    <Paper className={classes.paper} elevation={8} key={pokemon.name}>
+                        {pokemon.types.map(t => <div className={classes.type}>{t.type.name.toUpperCase()}</div>)}
+                        {pokemon.sprites.other["dream_world"]["front_default"] !== null ? 
+                        <img className={classes.image} alt={`${pokemon.name}'s sprite`} src={pokemon.sprites.other["dream_world"]["front_default"]}/> :
+                        <img className={classes.image} alt={`${pokemon.name}'s sprite`} src={pokemon.sprites.other["official-artwork"]["front_default"]}/>}
+                        <p className={classes.text}>#{pokemon.id}</p>
+                        <p className={classes.text}>{capsFirstLetter(pokemon.name)}</p>
+                        {pokemon.stats.map(s => (
+                            <p className={classes.text} key={s.stat.name}>{capsFirstLetter(s.stat.name)}: {s.base_stat}</p>
+                        ))}
+                        <Button onClick={() => handleClick(pokemon)}>Set as Favorite!</Button>
+                        <NewReview />
+                    </Paper>
+                </div>)}
         </div>
     );
 };
