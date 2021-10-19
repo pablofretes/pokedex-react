@@ -8,6 +8,16 @@ const reviewsReducer = (state = [], action) => {
             return [...state, action.data];
         case 'DELETE_REVIEW':
             return state.filter(r => r.id !== action.data.id);
+        case 'EDIT_REVIEW': {
+            const id = action.data.id
+            const reviewToEdit = state.find(r => r.id === id)
+            const editedReview = {
+                ...reviewToEdit,
+                content: reviewToEdit.content,
+                rating: reviewToEdit.rating
+            };
+            return state.map(r => r.id === id ? editedReview : r);
+        };
         default:
             return state;
     };
@@ -45,6 +55,16 @@ export const deleteReview = (review) => {
         dispatch({
             type: 'DELETE_REVIEW',
             data: review
+        });
+    };
+};
+
+export const editReview = (id, content) => {
+    return async dispatch => {
+        const editedReview = await reviewsService.editReview(id, content);
+        dispatch({
+            type: 'EDIT_REVIEW',
+            data: editedReview,
         });
     };
 };

@@ -16,6 +16,6 @@ export const setLimit = value => {
         type: 'LIMIT',
         data: limit,
     };
-}
+};
 
 export default limitReducer;

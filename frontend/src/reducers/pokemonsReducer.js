@@ -4,7 +4,7 @@ import { loadPokemonsFromLS, savePokemonsList } from '../utils/localStoragePokem
 const pokemonsReducer = (state = [], action) => { 
     switch(action.type){
         case 'INIT_POKEMONS':
-            return action.data
+            return action.data;
         default:
             return state;
     };

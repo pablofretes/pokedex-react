@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const schema = new mongoose.Schema({
     content: String,
+    rating: Number,
     pokemon: {},
     user: {
         type: mongoose.Schema.Types.ObjectId,

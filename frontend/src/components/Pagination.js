@@ -76,19 +76,19 @@ const Pagination = ({ totalCount, siblingCount = 1, pageSize }) => {
     };
     
     const onNext = () => {
-        const page = currentPage + 1;
+        const page = Number(currentPage + 1);
         dispatch(setOffset(page));
         dispatch({ type: 'INCREMENT' });
     };
     
     const onPrevious = () => {
-        const page = currentPage - 1;
+        const page = Number(currentPage - 1);
         dispatch(setOffset(page));
         dispatch({ type: 'DECREMENT' });
     };
     
     const handleSelect = (event) => {
-        const page = event.target.value;
+        const page = Number(event.target.value);
         console.log(page);
         dispatch(setOffset(page));
         dispatch(pageSelection(page));

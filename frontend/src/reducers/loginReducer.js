@@ -33,9 +33,7 @@ export const existingLogin = () => {
 
 export const logoutUser = () => {
   window.localStorage.removeItem('loggedUser');
-  return {
-    type: 'LOGOUT'
-  };
+  return { type: 'LOGOUT' };
 };
 
 export const newLogin = (credentials) => {
@@ -43,7 +41,6 @@ export const newLogin = (credentials) => {
     try {
       const userLog = await loginService.login(credentials);
       window.localStorage.setItem('loggedUser', JSON.stringify(userLog));
-      loginService.setToken(userLog.token);
       reviewsService.setToken(userLog.token);
       dispatch({
         type: 'LOG_IN',
@@ -52,7 +49,7 @@ export const newLogin = (credentials) => {
       dispatch(notificationSuccess(`Welcome ${userLog.username}`));
     }
     catch (err) {
-      dispatch(notificationError(err));
+      console.log(err);
       dispatch(notificationError('Incorrect Username or Password'));
       window.localStorage.clear();
     }

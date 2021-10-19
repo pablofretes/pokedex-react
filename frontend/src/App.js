@@ -5,13 +5,15 @@ import Home from './components/Home';
 import AppBarPokemon from './components/AppBar';
 import IndividualPokemon from './components/IndividualPokemon';
 import Notification from './components/Notification';
-import Favorite from './components/Favorite';
 import Login from '../src/components/Login';
 import SignUp from '../src/components/SignUp';
 import Reviews from '../src/components/Reviews';
 import { fetchEverything } from './reducers/pokemonsReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { existingLogin } from './reducers/loginReducer';
+import './App.css'
+import NewReview from './components/NewReview';
+import { initReviews } from './reducers/reviewsReducer';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -26,6 +28,10 @@ const App = () => {
   useEffect(() => {
     dispatch(existingLogin());
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(initReviews());
+}, [dispatch]);
 
   const capsFirstLetter = (str) => {
     //SOME POKEMONS' STATS ARE SEPARATED BY A '-'. THIS FUNCTION ELIMINATES IT AND CAPITALIZES THE FIRST LETTER OF EACH WORD.
@@ -51,14 +57,17 @@ const App = () => {
         <Route path="/pokemons">
           <PokemonsDisplay capsFirstLetter={capsFirstLetter}/>
         </Route>
-        <Route path="/favorite">
-          <Favorite capsFirstLetter={capsFirstLetter}/>
-        </Route>
         <Route path="/login">
           <Login />
         </Route>
         <Route path="/signUp">
           <SignUp />
+        </Route>
+        <Route path="/reviews/edit/:id">
+          <NewReview/>
+        </Route>
+        <Route path="/reviews/:name">
+          <NewReview/>
         </Route>
         <Route path="/reviews">
           <Reviews />

@@ -24,7 +24,8 @@ reviewsRouter.post('/', async (req, res) => {
     };
 
     const review = new Review({
-        title: body.content,
+        content: body.content,
+        rating: body.rating,
         pokemon: body.pokemon,
         user: user,
     });
@@ -41,10 +42,27 @@ reviewsRouter.put('/:id', async (req, res) => {
     const review = {
         content: body.content,
         pokemon: body.pokemon,
+        rating: body.rating,
     };
 
     const reviewToUpdate = await Review.findByIdAndUpdate(req.params.id, review, { new: true });
     res.json(reviewToUpdate);
-})
+});
+
+reviewsRouter.delete('/:id', async (req, res) => {
+    const id = req.params.id;
+    const reviewToDelete = await Review.findById(id);
+    const token = req.token;
+    const decodedToken = jwt.verify(token, process.env.SECRET);
+
+    if(!token || !decodedToken){
+        return res.status(401).json({ error: 'token missing or invalid' });
+    };
+
+    if(reviewToDelete.user.toString() === decodedToken.id){
+        await Review.findByIdAndDelete(id);
+        res.status(204).end();
+    };
+});
 
 module.exports = reviewsRouter;

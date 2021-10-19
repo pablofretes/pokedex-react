@@ -1,33 +1,26 @@
-import signUpService from '../services/signUp';
-import { newLogin } from './loginReducer';
-import { notificationError } from './notificationReducer';
+import usersService from '../services/signUp';
 
-const userReducer = (state = null, action) => {
+const userReducer = (state = [], action) => {
     switch(action.type) {
-        case 'SET_USER':
-            return action.data;
+        case 'INIT_USER':
+            return action.data
         default:
             return state;
     };
 };
 
-export const setUser = (credentials) => {
+export const getUsers = () => {
     return async dispatch => {
         try {
-            const user = await signUpService.signUp(credentials);
+            const users = await usersService.getUsers();
             dispatch({
-                type: 'SET_USER',
-                data: user
+                type: 'INIT_USERS',
+                data: users,
             });
-            const username = user.username;
-            const password = user.password;
-            const loginCredentials = { username: username, password: password };
-            newLogin(loginCredentials);
         } catch (error) {
-            dispatch(notificationError('Your account was not created, try again!'));
-            return null;
-        }
-    }
+            throw new Error('There are no users in the database!');
+        };
+    };
 };
 
 export default userReducer;

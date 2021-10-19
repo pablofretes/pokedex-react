@@ -1,9 +1,8 @@
 import React from 'react';
 import { Paper, makeStyles, Button } from '@material-ui/core';
-import { useSelector, useDispatch } from 'react-redux';
-import { setFavorite } from '../reducers/favoriteReducer';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
-import NewReview from './NewReview';
+import Loading from './Loading';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -43,20 +42,26 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: 60,
         marginBottom: 9
     },
-    favorite: {
-        backgroundColor: '#222222',
-    }
+    reviewButton: {
+        backgroundColor: '#c2185b',
+        borderRadius: 5,
+        padding: 8,
+        height: 30,
+        width: 100,
+        fontWeight: 'bold',
+        fontSize: 20,
+        margin: 10,
+        alignSelf: 'center'
+    },
 }));
 
 const IndividualPokemon = ({ capsFirstLetter }) => {
-    const dispatch = useDispatch();
     const classes = useStyles();
     const history = useHistory();
     const pokemon = useSelector(state => state.individualPokemon);
 
-    const handleClick = (p) => {
-        dispatch(setFavorite(p));
-        history.push('/favorite')
+    const handleReview = (p) => {
+        history.push(`/reviews/${p.name}`)
     }
 
     const isEmpty = (obj) => {
@@ -65,7 +70,7 @@ const IndividualPokemon = ({ capsFirstLetter }) => {
 
     return (
         <div>
-            {isEmpty(pokemon) ? <p>Loading...</p> : 
+            {isEmpty(pokemon) ? <Loading /> : 
                 (<div className={classes.root}>
                     <Paper className={classes.paper} elevation={8} key={pokemon.name}>
                         {pokemon.types.map(t => <div className={classes.type}>{t.type.name.toUpperCase()}</div>)}
@@ -77,8 +82,7 @@ const IndividualPokemon = ({ capsFirstLetter }) => {
                         {pokemon.stats.map(s => (
                             <p className={classes.text} key={s.stat.name}>{capsFirstLetter(s.stat.name)}: {s.base_stat}</p>
                         ))}
-                        <Button onClick={() => handleClick(pokemon)}>Set as Favorite!</Button>
-                        <NewReview />
+                        <Button className={classes.reviewButton} onClick={() => handleReview(pokemon)}>Review</Button>
                     </Paper>
                 </div>)}
         </div>

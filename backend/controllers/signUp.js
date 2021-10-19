@@ -1,9 +1,9 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const signUpRouter = require('express').Router();
+const userRouter = require('express').Router();
 const User = require('../models/user');
 
-signUpRouter.post('/', async (req, res) => {
+userRouter.post('/', async (req, res) => {
     const body = req.body;
 
     if(body.username.length < 5){
@@ -36,4 +36,9 @@ signUpRouter.post('/', async (req, res) => {
     res.json(savedUser);
 });
 
-module.exports = signUpRouter;
+userRouter.get('/', async (req, res) => {
+    const users = await User.find({}).populate('reviews');
+    res.json(users);
+});
+
+module.exports = userRouter;

@@ -29,9 +29,10 @@ const AppBarPokemon = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const user = useSelector(state => state.login);
+  console.log(user)
 
   const handleLogOut = () => {
-    dispatch(logoutUser);
+    dispatch(logoutUser());
   }
 
   return (
@@ -49,9 +50,6 @@ const AppBarPokemon = () => {
         </Toolbar>
         <Toolbar variant="dense">
           <Filter route='pokemons'/>
-          <Button color="inherit" component={Link} to="/favorite" data-cy="favorite-button">
-            Favorite
-          </Button>
           {user !== null ? (
             <div>
               <Button onClick={handleLogOut} color="inherit" to="/login" data-cy="logout-button" component={Link} className="logout-button">

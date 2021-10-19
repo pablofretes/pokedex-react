@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOnePokemon } from '../reducers/individualPokemonReducer';
 import axios from 'axios';
+import Loading from './Loading';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -63,7 +64,7 @@ const PokemonsDisplay = ({ capsFirstLetter }) => {
     };
     return (
         <div className={classes.root}>
-                {pokemons.length < 18 ? <div>Loading...</div> : 
+                {pokemons.length < 18 ? <Loading /> : 
                 (
                     <Grid container spacing={3}>
                         {pokemons.map((p) => (
@@ -71,7 +72,7 @@ const PokemonsDisplay = ({ capsFirstLetter }) => {
                             <Paper className={classes.paper && classes.color} elevation={10}>
                                 <p className={classes.p}>#{p.id}</p>
                                 <p className={classes.p}>{capsFirstLetter(p.name)}</p>
-                                <img className={classes.image} alt={`${p.name}'s sprite`} src={p.sprites["front_default"]}/>
+                                <img className={classes.image} alt={`${p.name}'s sprite`} src={p.sprites.other["official-artwork"]["front_default"]}/>
                             </Paper>
                     </Grid>
                 ))}

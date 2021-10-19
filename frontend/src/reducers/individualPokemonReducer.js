@@ -1,8 +1,10 @@
 const individualPokemonReducer = (state = {}, action) => {
     switch(action.type) {
         case 'GET_POKEMON':
+            const newState = action.data;
             console.log(action);
-            return action.data;
+            console.log(newState);
+            return newState;
         default:
             return state;
     };

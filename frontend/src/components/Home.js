@@ -7,13 +7,14 @@ import pikachu from '../img/pikachu(1).png';
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
-        height: 600,
         flexDirection: 'column',
         flexWrap: 'wrap',
         flexGrow: 1,
         justifyContent: 'center'
     },
     logo: {
+        marginTop: 80,
+        marginBottom: 50,
         width: 500,
         height: 'auto',
         alignSelf: 'center'

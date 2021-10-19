@@ -8,10 +8,9 @@ import currentPageReducer from './reducers/currentPageReducer';
 import individualPokemonReducer from './reducers/individualPokemonReducer';
 import notificationReducer from './reducers/notificationReducer';
 import loginReducer from './reducers/loginReducer';
-import userReducer from './reducers/userReducer';
 import filterReducer from './reducers/filterReducer'
-import favoriteReducer from './reducers/favoriteReducer'
 import reviewsReducer from './reducers/reviewsReducer';
+import userReducer from './reducers/userReducer';
 
 const reducer = combineReducers({
     pokemons: pokemonsReducer,
@@ -21,10 +20,9 @@ const reducer = combineReducers({
     individualPokemon: individualPokemonReducer,
     login: loginReducer,
     notification: notificationReducer,
-    user: userReducer,
     filter: filterReducer,
-    favorite: favoriteReducer,
-    reviews: reviewsReducer
+    reviews: reviewsReducer,
+    users: userReducer,
 });
 
 const store = createStore(
@@ -33,7 +31,7 @@ const store = createStore(
 );
 
 store.subscribe(() => {
-    const storeNow = store.getState().pokemons;
+    const storeNow = store.getState();
     console.log(storeNow);
 });
 
