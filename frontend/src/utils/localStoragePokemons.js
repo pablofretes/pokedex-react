@@ -6,9 +6,7 @@ export const loadPokemonsFromLS = (limit = 20, offset = 0) => {
     const pokemons = JSON.parse(localStorage.getItem(manyPokemonsKey(limit, offset)));
     if(pokemons === null) throw new Error(`Pokemons with offset: ${offset} and limit: ${limit} not found`);
 
-    const arrayPokemons = [...pokemons];
-
-    return arrayPokemons;
+    return pokemons;
 };
 
 export const savePokemonsList = (limit, offset, pokemons) => {

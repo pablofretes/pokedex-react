@@ -53,22 +53,21 @@ const Pagination = ({ totalCount, siblingCount = 1, pageSize }) => {
     const dispatch = useDispatch();
     const currentPage = useSelector(state => state.currentPage);
     console.log(currentPage);
-
+    const pagesTotal = Math.ceil(totalCount / pageSize);
     const paginationRange = usePagination({ currentPage, totalCount, siblingCount, pageSize });
 
     let optionsArray = [];
 
     //JUST AN ARRAY TO BE ABLE TO SELECT ANY PAGE INSTEAD OF CLICKING MANY TIMES TO GO TO A SPECIFIC PAGE
-    for(let i = 1; i <= 45; i++){
+    for(let i = 1; i <= pagesTotal; i++){
         optionsArray.push(i);
     };
 
     const onPageChange = (pageNumber) => {
-        console.log(pageNumber);
-        if(pageNumber === 45){
+        if(pageNumber === pagesTotal){
           dispatch(setLimit(18));
         };
-        if(pageNumber !== 45){
+        if(pageNumber !== pagesTotal){
           dispatch(setLimit(20))
         };
         dispatch(setOffset(pageNumber));
@@ -89,7 +88,6 @@ const Pagination = ({ totalCount, siblingCount = 1, pageSize }) => {
     
     const handleSelect = (event) => {
         const page = Number(event.target.value);
-        console.log(page);
         dispatch(setOffset(page));
         dispatch(pageSelection(page));
     };

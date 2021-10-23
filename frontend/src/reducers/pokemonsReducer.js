@@ -1,7 +1,7 @@
 import getPokemons from '../services/pokemons';
 import { loadPokemonsFromLS, savePokemonsList } from '../utils/localStoragePokemons';
 
-const pokemonsReducer = (state = [], action) => { 
+const pokemonsReducer = (state = {}, action) => { 
     switch(action.type){
         case 'INIT_POKEMONS':
             return action.data;
@@ -17,13 +17,12 @@ export const initPokemons = (pokemons) => {
 export const fetchEverything = async (limit, offset, dispatch) => {
     try {
         const pokemons = loadPokemonsFromLS(limit, offset);
-        console.log(pokemons);
         return dispatch(initPokemons(pokemons));
     } catch (error) {
         const pokemonsData = await getPokemons.getPokemons(limit, offset);
-        let pokemonsObject = { pokemons: pokemonsData };
+        let pokemonsObject = pokemonsData;
         savePokemonsList(limit, offset, pokemonsObject);
-        return dispatch(initPokemons(pokemonsData.results));
+        return dispatch(initPokemons(pokemonsData));
     };
 };
 

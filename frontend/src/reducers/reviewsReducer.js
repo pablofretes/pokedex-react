@@ -52,22 +52,28 @@ export const newReview = (content) => {
 
 export const deleteReview = (review) => {
     return async dispatch => {
-        const deleted = await reviewsService.deleteReview(review.id);
-        try {
-            if(deleted){
-                dispatch({
-                    type: 'DELETE_REVIEW',
-                    data: review
-                });
-                dispatch(notificationSuccess('Review deleted'));
+        const result = window.confirm('Do you really want to delete this review?');
+        if(result){
+            const deleted = await reviewsService.deleteReview(review.id);
+            try {
+                if(deleted){
+                    dispatch({
+                        type: 'DELETE_REVIEW',
+                        data: review
+                    });
+                    dispatch(notificationSuccess('Review deleted'));
+                };
+            } catch (error) {
+                console.error(error);
+                return null;
             };
-        } catch (error) {
-            console.error(error);
+        } else {
             return null;
         }
     };
 };
 
+//PLANNING TO ADD A WAY TO EDIT REVIEW LATER ON
 export const editReview = (id, content) => {
     return async dispatch => {
         const editedReview = await reviewsService.editReview(id, content);

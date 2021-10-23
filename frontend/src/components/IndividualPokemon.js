@@ -60,10 +60,11 @@ const IndividualPokemon = () => {
     const classes = useStyles();
     const history = useHistory();
     const pokemon = useSelector(state => state.individualPokemon);
+    const user = useSelector(state => state.login);
 
     const handleReview = (p) => {
-        history.push(`/reviews/${p.name}`)
-    }
+        history.push(`/reviews/${p.name}`);
+    };
 
     return (
         <div>
@@ -79,7 +80,7 @@ const IndividualPokemon = () => {
                         {pokemon.stats.map(s => (
                             <p className={classes.text} key={s.stat.name}>{capsFirstLetter(s.stat.name)}: {s.base_stat}</p>
                         ))}
-                        <Button data-cy={`review-button-${pokemon.name}`} className={classes.reviewButton} onClick={() => handleReview(pokemon)}>Review</Button>
+                        {user && <Button data-cy={`review-button-${pokemon.name}`} className={classes.reviewButton} onClick={() => handleReview(pokemon)}>Review</Button>}
                     </Paper>
                 </div>)}
         </div>

@@ -41,15 +41,15 @@ const useStyles = makeStyles((theme) => ({
 const PokemonsDisplay = () => {
     const dispatch = useDispatch();
     const classes = useStyles();
-    const pokemonsArray = useSelector(state => state.pokemons);
+    const pokemonsObject = useSelector(state => state.pokemons);
     const pageSize = 20;
-    const totalCount = 898;
+    const totalCount = pokemonsObject.count;
     const [pokemons, setPokemons] = useState([]);
 
     useEffect(() => {
         const awaitingPokemons = async () => {
             let urlArray = [];
-            pokemonsArray.forEach(async (r) => {
+            pokemonsObject.results.forEach(async (r) => {
                 const pokemonNow = await axios.get(r.url);
                 urlArray.push(pokemonNow.data);
                 if(urlArray.length > 0){
@@ -58,7 +58,7 @@ const PokemonsDisplay = () => {
             });
         };
         awaitingPokemons();
-    }, [pokemonsArray]);
+    }, [pokemonsObject]);
 
     const handleClick = (p) => {
         dispatch(getOnePokemon(p));
