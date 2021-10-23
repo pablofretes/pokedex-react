@@ -1,0 +1,8 @@
+POST http://localhost:3001/reviews
+Content-Type: application/json
+
+{
+    "content":"pablofretes",
+    "rating":50,
+    "pokemon":{ "name": "bulbasaur", "sprite":"" }
+}

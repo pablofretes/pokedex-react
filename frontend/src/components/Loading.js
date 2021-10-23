@@ -19,7 +19,7 @@ const Loading = () => {
     const classes = useStyles();
     return(
         <div className={classes.parent}>
-            <img className={classes.gif} src={loading} alt="Loading gif"/>
+            <img className={classes.gif} src={loading} alt="Loading gif" data-cy="loading-gif"/>
         </div>
     );
 };

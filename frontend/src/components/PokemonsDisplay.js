@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getOnePokemon } from '../reducers/individualPokemonReducer';
 import axios from 'axios';
 import Loading from './Loading';
+import { capsFirstLetter } from '../utils/functions';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -37,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const PokemonsDisplay = ({ capsFirstLetter }) => {
+const PokemonsDisplay = () => {
     const dispatch = useDispatch();
     const classes = useStyles();
     const pokemonsArray = useSelector(state => state.pokemons);

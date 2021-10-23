@@ -31,20 +31,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(initReviews());
-}, [dispatch]);
-
-  const capsFirstLetter = (str) => {
-    //SOME POKEMONS' STATS ARE SEPARATED BY A '-'. THIS FUNCTION ELIMINATES IT AND CAPITALIZES THE FIRST LETTER OF EACH WORD.
-    let toCapitalize = str.split(/-/);
-
-    for (let i = 0; i < toCapitalize.length; i++) {
-      toCapitalize[i] = toCapitalize[i][0].toUpperCase() + toCapitalize[i].substr(1);
-    };
-
-    const joined = toCapitalize.join(' ');
-
-    return joined;
-  };
+  }, [dispatch]);
 
   return (
     <div style={{ backgroundColor: '#222222' }}>
@@ -52,10 +39,10 @@ const App = () => {
       <AppBarPokemon />
       <Switch>
         <Route path="/pokemons/:name">
-          <IndividualPokemon capsFirstLetter={capsFirstLetter}/>
+          <IndividualPokemon/>
         </Route>
         <Route path="/pokemons">
-          <PokemonsDisplay capsFirstLetter={capsFirstLetter}/>
+          <PokemonsDisplay/>
         </Route>
         <Route path="/login">
           <Login />

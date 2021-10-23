@@ -4,7 +4,16 @@ const userRouter = require('express').Router();
 const User = require('../models/user');
 
 userRouter.post('/', async (req, res) => {
+    const everyUser = await User.find({}); 
     const body = req.body;
+
+    if(everyUser.find(u => u.username === body.username)){
+        return res.status(400).json({ error: 'username must be unique' });
+    };
+    
+    if(!body.username || !body.password){
+        return res.status(400).json({ error: 'username or password missing' });
+    };
 
     if(body.username.length < 5){
         return res.status(400).json({ error: 'username is too short' });
@@ -12,10 +21,6 @@ userRouter.post('/', async (req, res) => {
 
     if(body.password.length < 5){
         return res.status(400).json({ error: 'password is too short' });
-    };
-
-    if(!body.username || !body.password){
-        return res.status(400).json({ error: 'username or password missing' });
     };
 
     if(!body.name){

@@ -116,9 +116,9 @@ const Pagination = ({ totalCount, siblingCount = 1, pageSize }) => {
             {currentPage === 45 ? null : (
                 <Button className={classes.nextPrevious} onClick={onNext} data-cy='next-button'>&gt;</Button>
             )}
-            <select onChange={handleSelect} style={{ marginLeft: 10 }}>
+            <select data-cy="select-page" onChange={handleSelect} style={{ marginLeft: 10 }}>
                 {optionsArray.map((pageNumber, i) => {
-                    return <option value={pageNumber} key={i}>{pageNumber}</option>
+                    return <option data-cy={`select-page-${pageNumber}`} value={pageNumber} key={i}>{pageNumber}</option>
                 })}
             </select>
         </div>
