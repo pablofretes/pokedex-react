@@ -3,6 +3,7 @@ import { Button, makeStyles, Paper } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { newReview } from '../reducers/reviewsReducer';
 import { useHistory } from 'react-router';
+import { capsFirstLetter } from '../utils/functions';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -114,16 +115,16 @@ const NewReview = () => {
                 <form onSubmit={onSubmit}>
                     <div className={classes.div}>
                         <p className={classes.text}>{`Reviewing ${pokemon.name}`}</p>
-                        <img className={classes.image} src={pokemon.sprite} alt={`${pokemon.name}'s sprite`}/>
+                        <img className={classes.image} src={pokemon.sprite} alt={`${capsFirstLetter(pokemon.name)}'s sprite`}/>
                     </div>
-                    <input name="reviewInput" placeholder="Write a Review!" className={classes.input}/>
+                    <input name="reviewInput" placeholder="Write a Review!" className={classes.input} data-cy="new-review-input"/>
                     <div className={classes.container}>
                         <p className={classes.text}>Rate This Pokemon</p>
-                        <select name="reviewRating" className={classes.rating}>
-                            {optionsArray.map(o => <option key={o} value={o}>{o}</option>)}
+                        <select name="reviewRating" data-cy="select-rating" className={classes.rating}>
+                            {optionsArray.map(o => <option data-cy={`select-rating-${o}`} key={o} value={o}>{o}</option>)}
                         </select>
                     </div>
-                    <Button name="review-button" type="submit" className={classes.review}>Post Review</Button>
+                    <Button name="review-button" type="submit" className={classes.review} data-cy="review-form-button">Post Review</Button>
                 </form>
             </Paper>
         </div>

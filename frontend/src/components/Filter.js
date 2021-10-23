@@ -39,7 +39,7 @@ const Filter = ({ route }) => {
         const pokemon = event.target.filterInput.value;
         const lowercasePokemon = pokemon.toLowerCase();
         dispatch(setFilter(lowercasePokemon));
-    };//
+    };
 
     return (
         <div>

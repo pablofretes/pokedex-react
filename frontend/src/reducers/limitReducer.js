@@ -2,7 +2,8 @@ const limitReducer = (state = 20, action) => {
     switch (action.type) {
         case 'LIMIT':
             if(action.data === 18){
-                return action.data
+                const newLimit = action.data;
+                return newLimit;
             };
             return 20;
         default:

@@ -29,7 +29,6 @@ const AppBarPokemon = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const user = useSelector(state => state.login);
-  console.log(user)
 
   const handleLogOut = () => {
     dispatch(logoutUser());

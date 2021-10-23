@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles, Button } from '@material-ui/core';
 import { deleteReview } from '../reducers/reviewsReducer';
+import { capsFirstLetter } from '../utils/functions';
 
 const useStyles = makeStyles(() => ({
     reviewContainerStyle: {
@@ -95,13 +96,13 @@ const Reviews = () => {
                                         <p>{r.rating}</p>
                                     </div>
                                     <div className={classes.contentStyle}>
-                                        <p>{r.content}</p>
+                                        <p>{capsFirstLetter(r.content)}</p>
                                     </div>
                                 </div>
                             </div>
                             <div className={classes.parent2}>
                                 <img  className={classes.image} src={r.pokemon.sprite} alt={`${r.pokemon.name}'s sprite`}/>
-                                <Button className={classes.delete} onClick={() => handleDelete(r)} type="button">Delete</Button>
+                                <Button className={classes.delete} onClick={() => handleDelete(r)} type="button" data-cy="delete-review-button">Delete</Button>
                             </div>
                         </div>
                     );

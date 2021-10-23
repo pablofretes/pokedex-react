@@ -3,6 +3,7 @@ import { Paper, makeStyles, Button } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import Loading from './Loading';
+import { capsFirstLetter, isEmpty } from '../utils/functions';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -55,17 +56,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const IndividualPokemon = ({ capsFirstLetter }) => {
+const IndividualPokemon = () => {
     const classes = useStyles();
     const history = useHistory();
     const pokemon = useSelector(state => state.individualPokemon);
 
     const handleReview = (p) => {
         history.push(`/reviews/${p.name}`)
-    }
-
-    const isEmpty = (obj) => {
-        return obj && Object.keys(obj).length === 0;
     }
 
     return (
@@ -82,7 +79,7 @@ const IndividualPokemon = ({ capsFirstLetter }) => {
                         {pokemon.stats.map(s => (
                             <p className={classes.text} key={s.stat.name}>{capsFirstLetter(s.stat.name)}: {s.base_stat}</p>
                         ))}
-                        <Button className={classes.reviewButton} onClick={() => handleReview(pokemon)}>Review</Button>
+                        <Button data-cy={`review-button-${pokemon.name}`} className={classes.reviewButton} onClick={() => handleReview(pokemon)}>Review</Button>
                     </Paper>
                 </div>)}
         </div>

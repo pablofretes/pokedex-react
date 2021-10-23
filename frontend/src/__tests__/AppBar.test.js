@@ -7,7 +7,7 @@ import { render, fireEvent } from '@testing-library/react';
 import { Router } from 'react-router';
 import { createMemoryHistory } from "history";
 import * as reactRedux from 'react-redux';
-import { setUser } from '../reducers/userReducer';
+import { logoutUser } from '../reducers/loginReducer';
 
 const mockStore = configureStore([]);
 
@@ -20,11 +20,10 @@ describe('AppBar with user logged in', () => {
     beforeEach(async () => {
         store = mockStore({
             myState: {
-                user: {
+                login: {
                     username: 'testing1234',
                     password: 'secret1234',
-                    name: 'testtest'
-                }
+                },
             },
         });
         reactRedux.useDispatch = jest.fn().mockImplementation(() => mockDispatch);
@@ -42,12 +41,14 @@ describe('AppBar with user logged in', () => {
         const logout = component.getByText('Log Out');
         const home = component.getByText('Home');
         const pokedex = component.getByText('Pokedex');
-        const favorite = component.getByText('Favorite');
+        const reviews = component.getByText('Reviews');
+        const search = component.getByText('Search');
 
         expect(logout).toBeDefined();
         expect(home).toBeDefined();
         expect(pokedex).toBeDefined();
-        expect(favorite).toBeDefined();
+        expect(reviews).toBeDefined();
+        expect(search).toBeDefined();
     })
 
     it('should dispatch an action on logout button click', () => {
@@ -55,7 +56,7 @@ describe('AppBar with user logged in', () => {
         fireEvent.click(logout)
         expect(mockDispatch).toHaveBeenCalledTimes(1);
         expect(mockDispatch).toHaveBeenCalledWith(
-          setUser(null)
+          logoutUser(null)
         );
     });
 });

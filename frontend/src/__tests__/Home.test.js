@@ -6,12 +6,14 @@ import { Router } from 'react-router';
 import { createMemoryHistory } from "history";
 
 describe('Home', () => {
+    
     const history = createMemoryHistory();
     const component = render(
         <Router history={history}>
             <Home />
         </Router>
     );
+
     it('pikachu button and pokedex logo are defined', () => {
         const pikachuButton = component.getByTestId('pikachu-button');
         const pokedexLogo = component.getByTestId('pokedex-logo');

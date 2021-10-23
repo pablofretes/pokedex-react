@@ -1,4 +1,5 @@
 import reviewsService from '../services/reviews';
+import { notificationSuccess } from './notificationReducer';
 
 const reviewsReducer = (state = [], action) => {
     switch(action.type) {
@@ -51,11 +52,19 @@ export const newReview = (content) => {
 
 export const deleteReview = (review) => {
     return async dispatch => {
-        await reviewsService.deleteReview(review.id);
-        dispatch({
-            type: 'DELETE_REVIEW',
-            data: review
-        });
+        const deleted = await reviewsService.deleteReview(review.id);
+        try {
+            if(deleted){
+                dispatch({
+                    type: 'DELETE_REVIEW',
+                    data: review
+                });
+                dispatch(notificationSuccess('Review deleted'));
+            };
+        } catch (error) {
+            console.error(error);
+            return null;
+        }
     };
 };
 

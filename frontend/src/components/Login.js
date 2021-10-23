@@ -96,6 +96,7 @@ const Login = () => {
                         <Button
                             className={classes.logIn}
                             type="submit"
+                            data-cy="login-form-button"
                         >
                             Log In
                         </Button>
