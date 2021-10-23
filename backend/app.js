@@ -29,7 +29,6 @@ app.use('/signUp', userRouter);
 if (process.env.NODE_ENV === 'test') {
     const testingRouter = require('./controllers/testing');
     app.use('/testing', testingRouter);
-    console.log('testing', testingRouter);
 };
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);
