@@ -13,10 +13,12 @@ reviewsRouter.post('/', async (req, res) => {
     const token = req.token;
     const decodedToken = jwt.verify(token, process.env.SECRET);
 
+    //IF THERE IS NO TOKEN WE RETURN AN ERROR
     if(!token || !decodedToken) {
         return res.status(401).json({ error: 'token missing or invalid '});
     };
 
+    //IF THERE IS A TOKEN WE FIND THE USER THAT TOKEN CORRESPONDS TO
     const user = await User.findById(decodedToken.id);
 
     if(!body.content){
@@ -59,6 +61,7 @@ reviewsRouter.delete('/:id', async (req, res) => {
         return res.status(401).json({ error: 'token missing or invalid' });
     };
 
+    //IF THERE IS A TOKEN WE CHECK IF THE TOKEN CORRESPONDS TO THE USER AND IF IT DOES DELETE THE REVIEW
     if(reviewToDelete.user.toString() === decodedToken.id){
         await Review.findByIdAndDelete(id);
         res.status(204).end();

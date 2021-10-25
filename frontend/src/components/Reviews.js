@@ -3,8 +3,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles, Button } from '@material-ui/core';
 import { deleteReview } from '../reducers/reviewsReducer';
 import { capsFirstLetter } from '../utils/functions';
+import { notificationSuccess } from '../reducers/notificationReducer';
 
 const useStyles = makeStyles(() => ({
+    noReviews: {
+        display: 'flex',
+        justifyContent: 'center',
+        padding: 10,
+        width: 450,
+        margin: 'auto',
+        textAlign: 'center',
+        backgroundColor: '#E5709B',
+        borderRadius: 30,
+        marginTop: 100,
+        borderStyle: 'solid',
+        borderColor: '#c2185b'
+    },
     reviewContainerStyle: {
         display: 'flex',
         flexDirection: 'row',
@@ -77,16 +91,23 @@ const Reviews = () => {
     const reviews = useSelector(state => state.reviews);
     const dispatch = useDispatch();
 
+    //IF THERE ARE REVIEWS IN THE DATABASE WE FILTER EVERY REVIEW TO CHECK IF THE LOGGED USER HAS MADE ANY REVIEWS AND STORE THEM IN THIS VARIABLE
     const userReviews = reviews ? reviews.filter(r => r.user.username === user.username) : null;
-    console.log(userReviews);
 
     const handleDelete = (review) => {
-        dispatch(deleteReview(review));
+        //WE CONFIRM WITH THE USER IF HE REALLY WANTS TO DELETE THIS REVIEW
+        const result = window.confirm('Do you really want to delete this review?');
+        if(result){
+            dispatch(deleteReview(review));
+            dispatch(notificationSuccess('Review deleted'));
+        };
     };
 
     return (
         <>  
-            {!userReviews ? <p>You haven't reviewed any pokemons!</p> : (
+            {userReviews.length === 0 ? (
+                <div className={classes.noReviews}><p style={{ fontSize: 25, color: 'black', fontFamily: 'Roboto, monospace' }}>You haven't reviewed a pokemon yet</p></div>
+                ) : (
                 userReviews.map(r => {
                     return (
                         <div className={classes.reviewContainerStyle}>

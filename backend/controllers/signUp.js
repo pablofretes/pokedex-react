@@ -27,15 +27,18 @@ userRouter.post('/', async (req, res) => {
         return res.status(400).json({ error: 'name missing' });
     }
 
+    //IF EVERY VALIDATION PASSES WE HASH THE PASSWORD
     const saltRounds = 10;
     const passwordHash = await bcrypt.hash(body.password, saltRounds);
     
+    //AND CREATE A NEW USER
     const user = new User({
         username: body.username,
         name: body.name,
         passwordHash
     });
 
+    //WHICH WE SAVE
     const savedUser = await user.save();
 
     res.json(savedUser);

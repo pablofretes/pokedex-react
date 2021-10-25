@@ -3,7 +3,6 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import pokemonsReducer from './reducers/pokemonsReducer';
 import offsetReducer from './reducers/offsetReducer';
-import limitReducer from './reducers/limitReducer';
 import currentPageReducer from './reducers/currentPageReducer';
 import individualPokemonReducer from './reducers/individualPokemonReducer';
 import notificationReducer from './reducers/notificationReducer';
@@ -15,7 +14,6 @@ import userReducer from './reducers/userReducer';
 const reducer = combineReducers({
     pokemons: pokemonsReducer,
     offset: offsetReducer,
-    limit: limitReducer,
     currentPage: currentPageReducer,
     individualPokemon: individualPokemonReducer,
     login: loginReducer,

@@ -9,13 +9,13 @@ const loginReducer = (state = null, action) => {
   case 'LOGGED_IN':
     return action.data;
   case 'LOGOUT':
-    return null
+    return null;
   default: return state;
   }
 }
 
 export const existingLogin = () => {
-
+  //IF THERE IS ALREADY A USER LOGGED IN LOCALSTORAGE THEN WE JUST PASS THAT OBJECT TO OUR login STORE
   const loggedUserJSON = window.localStorage.getItem('loggedUser');
   if(loggedUserJSON){
     const userLog = JSON.parse(loggedUserJSON);
@@ -39,6 +39,7 @@ export const logoutUser = () => {
 export const newLogin = (credentials) => {
   return async dispatch => {
     try {
+      //WHEN A USER LOGS IN WE STORE HIS CREDENTIALS IN LOCALSTORAGE AND login STORE
       const userLog = await loginService.login(credentials);
       window.localStorage.setItem('loggedUser', JSON.stringify(userLog));
       reviewsService.setToken(userLog.token);
@@ -49,9 +50,9 @@ export const newLogin = (credentials) => {
       dispatch(notificationSuccess(`Welcome ${userLog.username}`));
     }
     catch (err) {
-      console.log(err);
+      console.error(err);
       dispatch(notificationError('Incorrect Username or Password'));
-      window.localStorage.clear();
+      window.localStorage.removeItem('loggedUser');
     }
   }
 }

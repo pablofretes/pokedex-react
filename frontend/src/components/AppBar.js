@@ -48,13 +48,12 @@ const AppBarPokemon = () => {
           </Typography>
         </Toolbar>
         <Toolbar variant="dense">
-          <Filter route='pokemons'/>
           {user !== null ? (
             <div>
+              <Button color="inherit" component={Link} to="/reviews" data-cy="reviews-button">Reviews</Button>
               <Button onClick={handleLogOut} color="inherit" to="/login" data-cy="logout-button" component={Link} className="logout-button">
                 Log Out
               </Button>
-              <Button color="inherit" component={Link} to="/reviews" data-cy="reviews-button">Reviews</Button>
             </div>
           ) : (
             <div>
@@ -62,6 +61,9 @@ const AppBarPokemon = () => {
               <Button className={classes.button} color="inherit" component={Link} to="/signUp" data-cy="signUp-button">Sign Up</Button>
             </div>
           )}
+        </Toolbar>
+        <Toolbar variant="dense">
+          <Filter />
         </Toolbar>
       </AppBar>
     </Box>

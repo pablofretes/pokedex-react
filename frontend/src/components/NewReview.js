@@ -86,9 +86,9 @@ const NewReview = () => {
     const pokemonObject = useSelector(state => state.individualPokemon);
     const history = useHistory();
 
-    console.log(pokemonObject);
-
     const pokemon = {
+        //THE POKEMON OBJECT OBTAINED FOR OUR INDIVIDUAL POKEMON FROM pokeapi.co IS WAY TOO BIG SO WE ONLY 
+        //COPY THE RELEVANT INFO IN A NEW OBJECT AND PASS THAT TO OUR DATABASE
         name: pokemonObject.name,
         sprite: pokemonObject.sprites.other["official-artwork"]["front_default"],
     };
@@ -98,7 +98,6 @@ const NewReview = () => {
         const review = (event.target.reviewInput.value).toString();
         const rating = Number(event.target.reviewRating.value);
         const credentials = { content: review, rating: rating, pokemon: pokemon };
-        console.log(credentials);
         dispatch(newReview(credentials));
         history.push('/reviews');
     };

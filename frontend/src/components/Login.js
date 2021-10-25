@@ -33,6 +33,12 @@ const useStyles = makeStyles((theme) => ({
         fontSize: 20,
         margin: 10
     },
+    error: {
+        fontFamily: 'Roboto, monospace',
+        fontWeight: 'bold',
+        fontSize: 14,
+        color: 'red'
+    },
 }));
 
 const validationSchema = yup.object().shape({
@@ -80,7 +86,7 @@ const Login = () => {
                             name="username"
                             component={TextField}
                         />
-                        <div style={{ color:'red' }}>
+                        <div className={classes.error}>
                             <ErrorMessage name="username" />
                         </div>
                         <Field
@@ -90,7 +96,7 @@ const Login = () => {
                             component={TextField}
                             type="password"
                         />
-                        <div style={{ color:'red' }}>
+                        <div className={classes.error}>
                             <ErrorMessage name="password" />
                         </div>
                         <Button

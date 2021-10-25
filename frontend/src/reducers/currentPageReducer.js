@@ -5,7 +5,6 @@ const currentPageReducer = (state = 1, action) => {
         case 'DECREMENT':
             return state - 1;
         case 'SELECTION':
-            console.log(action);
             const newPage = action.data;
             return newPage;
         default:

@@ -35,6 +35,12 @@ const useStyles = makeStyles((theme) => ({
         fontSize: 20,
         margin: 10
     },
+    error: {
+        fontFamily: 'Roboto, monospace',
+        fontWeight: 'bold',
+        fontSize: 14,
+        color: 'red'
+    },
 }));
 
 const validationSchema = yup.object().shape({
@@ -54,7 +60,7 @@ const validationSchema = yup.object().shape({
     name: yup
         .string()
         .required()
-})
+});
 
 const SignUp = () => {
     const classes = useStyles();
@@ -99,7 +105,7 @@ const SignUp = () => {
                             name="username"
                             component={TextField}
                         />
-                        <div style={{ color:'red' }}>
+                        <div className={classes.error}>
                             <ErrorMessage name="username" />
                         </div>
                         <Field
@@ -109,7 +115,7 @@ const SignUp = () => {
                             component={TextField}
                             type="password"
                         />
-                        <div style={{ color:'red' }}>
+                        <div className={classes.error}>
                             <ErrorMessage name="password" />
                         </div>
                         <Field
@@ -119,7 +125,7 @@ const SignUp = () => {
                             component={TextField}
                             type="password"
                         />
-                        <div style={{ color:'red' }}>
+                        <div className={classes.error}>
                             <ErrorMessage name="passwordConfirmation" />
                         </div>
                         <Field
@@ -128,7 +134,7 @@ const SignUp = () => {
                             name="name"
                             component={TextField}
                         />
-                        <div style={{ color:'red' }}>
+                        <div className={classes.error}>
                             <ErrorMessage name="name" />
                         </div>
                         <Button

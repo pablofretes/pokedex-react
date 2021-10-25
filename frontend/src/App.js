@@ -18,12 +18,11 @@ import { initReviews } from './reducers/reviewsReducer';
 const App = () => {
   const dispatch = useDispatch();
   const offset = useSelector(state => state.offset);
-  const limit = useSelector(state => state.limit);
   
   useEffect(() => {
     //FETCHES 20 OBJECTS THAT CONTAIN AN URL TO AN INDIVIDUAL POKEMON
-    fetchEverything(limit, offset, dispatch)
-  }, [limit, offset, dispatch]);
+    fetchEverything(offset, dispatch)
+  }, [offset, dispatch]);
 
   useEffect(() => {
     dispatch(existingLogin());

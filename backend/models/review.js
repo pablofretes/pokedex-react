@@ -13,6 +13,7 @@ const schema = new mongoose.Schema({
     },
 });
 
+//THIS TRANSFORMS THE MONGOOSE PROPERTY _id TO JUST id, BECAUSE _id IS ANNOYING!, THEN IT DELETES _id AND __v
 schema.set('toJSON', {
     transform: (document, returnedObject) => {
         returnedObject.id = returnedObject._id.toString();
@@ -21,4 +22,6 @@ schema.set('toJSON', {
     }
 });
 
-module.exports = mongoose.model('Review', schema);
+const Review = mongoose.model('Review', schema);
+
+module.exports = Review;

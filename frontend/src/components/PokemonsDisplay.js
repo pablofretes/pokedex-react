@@ -48,21 +48,26 @@ const PokemonsDisplay = () => {
 
     useEffect(() => {
         const awaitingPokemons = async () => {
+            //THIS FUNCTION GETS EVERY POKEMON ON OUR pokemons STORE AND PUSHES THEM TO A REACT STATE.
+            //EVERY TIME OUR pokemons STORE CHANGES THIS FUNCTION RUNS FETCHES THE NEW POKEMMONS ONCE AGAIN
             let urlArray = [];
+
             pokemonsObject.results.forEach(async (r) => {
                 const pokemonNow = await axios.get(r.url);
                 urlArray.push(pokemonNow.data);
                 if(urlArray.length > 0){
                     setPokemons([...urlArray]);
-                }
+                };
             });
         };
         awaitingPokemons();
     }, [pokemonsObject]);
 
     const handleClick = (p) => {
+        //IF A POKEMON IS CLICKED WE STORE IT INTO OUR individualPokemon STORE
         dispatch(getOnePokemon(p));
     };
+
     return (
         <div className={classes.root}>
                 {pokemons.length < 18 ? <Loading /> : 

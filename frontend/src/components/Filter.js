@@ -7,7 +7,7 @@ import { getOnePokemon } from '../reducers/individualPokemonReducer';
 import { notificationError } from '../reducers/notificationReducer';
 import { setFilter } from '../reducers/filterReducer';
 
-const Filter = ({ route }) => {
+const Filter = () => {
     const dispatch = useDispatch();
     const filter = useSelector(state => state.filter);
     const history = useHistory();
@@ -16,26 +16,27 @@ const Filter = ({ route }) => {
         const fetch = async () => {
             try {
                 if(filter){
+                    //IF THE FILTER STATE CHANGES WE WILL ATTEMP TO GET THAT POKEMON FROM pokeapi.co AND IF IT SUCCEEDS THEN WE REDIRECT TO THAT POKEMON
                     const searchedPokemon = await getPokemons.getPokemonByName(filter);
                     console.log(searchedPokemon);
                     dispatch(getOnePokemon(searchedPokemon));
                     if(searchedPokemon.name === filter){
-                        history.push(`/${route}/${searchedPokemon.name}`);
+                        history.push(`/pokemons/${searchedPokemon.name}`);
                     };
                 }
             } catch (error) {
+                //IF IT FAILS WE SHOW THAT IN A NOTIFICATION AND THEN RETURN NULL SO NOTHING ELSE HAPPENS
                 console.log(error);
                 dispatch(notificationError('That pokémon doesnt exist! Try Again!'));
                 return null;
             }
         } 
         fetch();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [filter])
+    }, [filter, dispatch, history])
 
     const handleChange = async (event) => {
+        //WE DISPATCH A NEW FILTER STATE ONLY IF THE SEARCH BUTTON IS CLICKED
         event.preventDefault();
-        console.log(event.target.filterInput.value)
         const pokemon = event.target.filterInput.value;
         const lowercasePokemon = pokemon.toLowerCase();
         dispatch(setFilter(lowercasePokemon));

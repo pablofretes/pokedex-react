@@ -1,5 +1,7 @@
 import usersService from '../services/signUp';
 
+//JUST KEEPING THIS HERE IN CASE I WANT TO ADD A KIND OF TWEETERLIKE WALL OR SOMETHING
+
 const userReducer = (state = [], action) => {
     switch(action.type) {
         case 'INIT_USER':

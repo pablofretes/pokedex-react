@@ -4,7 +4,6 @@ import Button from '@material-ui/core/Button';
 import { DOTS, usePagination } from '../hooks/usePagination';
 import { useSelector, useDispatch } from 'react-redux';
 import { setOffset } from '../reducers/offsetReducer';
-import { setLimit } from '../reducers/limitReducer';
 import { pageSelection } from '../reducers/currentPageReducer';
 
 const useStyles = makeStyles((theme) => ({
@@ -64,12 +63,6 @@ const Pagination = ({ totalCount, siblingCount = 1, pageSize }) => {
     };
 
     const onPageChange = (pageNumber) => {
-        if(pageNumber === pagesTotal){
-          dispatch(setLimit(18));
-        };
-        if(pageNumber !== pagesTotal){
-          dispatch(setLimit(20))
-        };
         dispatch(setOffset(pageNumber));
         dispatch(pageSelection(pageNumber));
     };

@@ -8,7 +8,7 @@ const offsetReducer = (state = 0, action) => {
 };
 
 export const setOffset = (value) => {
-    const offset = (value * 20) - 20;
+    const offset = Number((value * 20) - 20);
     return {
         type: 'OFFSET',
         data: offset,

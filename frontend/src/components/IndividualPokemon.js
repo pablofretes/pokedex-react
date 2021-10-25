@@ -80,6 +80,7 @@ const IndividualPokemon = () => {
                         {pokemon.stats.map(s => (
                             <p className={classes.text} key={s.stat.name}>{capsFirstLetter(s.stat.name)}: {s.base_stat}</p>
                         ))}
+                        {/*THIS BUTTON SHOULD ONLY EXIST IF THERE IS A USER LOGGED IN BECAUSE ONLY LOGGED USERS CAN MAKE REVIEWS.*/}
                         {user && <Button data-cy={`review-button-${pokemon.name}`} className={classes.reviewButton} onClick={() => handleReview(pokemon)}>Review</Button>}
                     </Paper>
                 </div>)}
