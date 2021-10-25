@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.b6dc8e23.chunk.css",
+    "main.js": "/static/js/main.6279821b.chunk.js",
+    "main.js.map": "/static/js/main.6279821b.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.8758630c.js",
+    "runtime-main.js.map": "/static/js/runtime-main.8758630c.js.map",
+    "static/js/2.4519087e.chunk.js": "/static/js/2.4519087e.chunk.js",
+    "static/js/2.4519087e.chunk.js.map": "/static/js/2.4519087e.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.b6dc8e23.chunk.css.map": "/static/css/main.b6dc8e23.chunk.css.map",
+    "static/js/2.4519087e.chunk.js.LICENSE.txt": "/static/js/2.4519087e.chunk.js.LICENSE.txt",
+    "static/media/Pokédex_logo.907dcf3a.png": "/static/media/Pokédex_logo.907dcf3a.png",
+    "static/media/loading-transparent.757857ce.gif": "/static/media/loading-transparent.757857ce.gif",
+    "static/media/pikachu(1).91857373.png": "/static/media/pikachu(1).91857373.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8758630c.js",
+    "static/js/2.4519087e.chunk.js",
+    "static/css/main.b6dc8e23.chunk.css",
+    "static/js/main.6279821b.chunk.js"
+  ]
+}
