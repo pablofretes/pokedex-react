@@ -68,7 +68,6 @@ const SignUp = () => {
     const history = useHistory();
 
     const onSubmit = async (event) => {
-        console.log(event)
         const credentials = {
             username: event.username,
             password: event.password,

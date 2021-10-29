@@ -51,7 +51,6 @@ const Pagination = ({ totalCount, siblingCount = 1, pageSize }) => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const currentPage = useSelector(state => state.currentPage);
-    console.log(currentPage);
     const pagesTotal = Math.ceil(totalCount / pageSize);
     const paginationRange = usePagination({ currentPage, totalCount, siblingCount, pageSize });
 

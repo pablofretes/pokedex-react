@@ -18,7 +18,6 @@ const Filter = () => {
                 if(filter){
                     //IF THE FILTER STATE CHANGES WE WILL ATTEMP TO GET THAT POKEMON FROM pokeapi.co AND IF IT SUCCEEDS THEN WE REDIRECT TO THAT POKEMON
                     const searchedPokemon = await getPokemons.getPokemonByName(filter);
-                    console.log(searchedPokemon);
                     dispatch(getOnePokemon(searchedPokemon));
                     if(searchedPokemon.name === filter){
                         history.push(`/pokemons/${searchedPokemon.name}`);
@@ -26,7 +25,7 @@ const Filter = () => {
                 }
             } catch (error) {
                 //IF IT FAILS WE SHOW THAT IN A NOTIFICATION AND THEN RETURN NULL SO NOTHING ELSE HAPPENS
-                console.log(error);
+                console.error(error);
                 dispatch(notificationError('That pokémon doesnt exist! Try Again!'));
                 return null;
             }
