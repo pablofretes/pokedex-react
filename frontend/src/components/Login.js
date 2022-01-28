@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
         margin: 10
     },
     error: {
-        fontFamily: 'Roboto, monospace',
+        fontFamily: 'Cairo, monospace',
         fontWeight: 'bold',
         fontSize: 14,
         color: 'red'

@@ -6,65 +6,6 @@ import { capsFirstLetter } from '../utils/functions';
 import { notificationSuccess } from '../reducers/notificationReducer';
 
 const useStyles = makeStyles(() => ({
-    noReviews: {
-        display: 'flex',
-        justifyContent: 'center',
-        padding: 10,
-        width: 450,
-        margin: 'auto',
-        textAlign: 'center',
-        backgroundColor: '#E5709B',
-        borderRadius: 30,
-        marginTop: 100,
-        borderStyle: 'solid',
-        borderColor: '#c2185b'
-    },
-    reviewContainerStyle: {
-        display: 'flex',
-        flexDirection: 'row',
-        flexWrap: 'nowrap',
-        alignItems: 'flex-start',
-        justifyContent: 'flex-start',
-        margin: 'auto',
-        width: 400,
-        backgroundColor: '#E5709B',
-        borderRadius: 30,
-        marginTop: 10,
-        borderStyle: 'solid',
-        borderColor: '#c2185b'
-    },
-    parent:{
-        fontFamily: 'Roboto, monospace',
-        fontSize: 15,
-        textAlign: 'center',
-        width: 250
-    },
-    text: {
-        justifyContent: 'space-around',
-        alignItems: 'flex-start',
-        fontFamily: 'Roboto, monospace',
-    },
-    ratingContainerStyle: {
-        width: 50,
-        height: 50,
-        borderRadius: 25,
-        borderStyle: 'solid',
-        color: '#c2185b',
-        borderColor: '#c2185b',
-        marginTop: 10,
-        marginLeft: 5
-    },
-    contentStyle: {
-        alignSelf: 'flex-start',
-        marginLeft: 10
-    },
-    image: {
-        height: 125,
-        width: 'auto',
-        alignSelf: 'flex-end',
-        marginTop: 10,
-        marginRight: 7,
-    },
     delete: {
         backgroundColor: '#c2185b',
         borderRadius: 5,
@@ -72,17 +13,11 @@ const useStyles = makeStyles(() => ({
         height: 30,
         width: 100,
         fontWeight: 'bold',
-        fontSize: 20,
+        fontSize: 15,
         margin: 10,
+        fontFamily: 'Cairo',
         alignSelf: 'center'
     },
-    parent2:{
-        display: 'flex',
-        flexDirection: 'column',
-        flexWrap: 'nowrap',
-        position: 'relative',
-        float: 'right'
-    }
 }))
 
 const Reviews = () => {
@@ -104,32 +39,30 @@ const Reviews = () => {
     };
 
     return (
-        <>  
+        <div className='reviews-root'>  
             {userReviews.length === 0 ? (
-                <div className={classes.noReviews}><p style={{ fontSize: 25, color: 'black', fontFamily: 'Roboto, monospace' }}>You haven't reviewed a pokemon yet</p></div>
+                <div className='no-reviews'><p>You haven't reviewed a pokemon yet</p></div>
                 ) : (
                 userReviews.map(r => {
                     return (
-                        <div className={classes.reviewContainerStyle}>
-                            <div className={classes.parent}>
-                                <div className={classes.text}>
-                                    <div className={classes.ratingContainerStyle}>
-                                        <p>{r.rating}</p>
-                                    </div>
-                                    <div className={classes.contentStyle}>
-                                        <p>{capsFirstLetter(r.content)}</p>
-                                    </div>
-                                </div>
+                    <div className='review-container-style'>
+                            <div className='image-review-container'>
+                                <img src={r.pokemon.sprite} alt={`${r.pokemon.name}'s sprite`}/>
                             </div>
-                            <div className={classes.parent2}>
-                                <img  className={classes.image} src={r.pokemon.sprite} alt={`${r.pokemon.name}'s sprite`}/>
-                                <Button className={classes.delete} onClick={() => handleDelete(r)} type="button" data-cy="delete-review-button">Delete</Button>
+                            <div className='review-content'>
+                                <div className='rating-container-style'>
+                                    <p>{r.rating}</p>
+                                </div>
+                                <div className='content-style'>
+                                    <p>{capsFirstLetter(r.content)}</p>
+                                    <Button className={classes.delete} onClick={() => handleDelete(r)} type="button" data-cy="delete-review-button">Delete</Button>
+                                </div>
                             </div>
                         </div>
                     );
                 })
             )}
-        </>
+        </div>
     );
 };
 

@@ -1,13 +1,26 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router';
 import getPokemons from '../services/pokemons';
-import { Button } from '@material-ui/core';
+import { Button, makeStyles } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOnePokemon } from '../reducers/individualPokemonReducer';
 import { notificationError } from '../reducers/notificationReducer';
 import { setFilter } from '../reducers/filterReducer';
 
+const useStyles = makeStyles((theme) => ({
+    button: {
+        fontFamily: 'Cairo',
+        fontWeight: 'bolder',
+        color: 'white'
+    },
+    filter: {
+        fontFamily: 'Cairo',
+        fontWeight: 'bolder',
+    }
+}))
+
 const Filter = () => {
+    const classes = useStyles();
     const dispatch = useDispatch();
     const filter = useSelector(state => state.filter);
     const history = useHistory();
@@ -44,8 +57,8 @@ const Filter = () => {
     return (
         <div>
             <form onSubmit={handleChange}>
-                <input placeholder='Search...' name="filterInput" data-cy="searchBar"/>
-                <Button type="submit" data-cy="searchBar-button">Search</Button>
+                <input placeholder='Search...' name="filterInput" data-cy="searchBar" className={classes.filter} />
+                <Button type="submit" data-cy="searchBar-button" className={classes.button} >Search</Button>
             </form>
         </div>
     );

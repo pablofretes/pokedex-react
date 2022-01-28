@@ -33,7 +33,7 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <div style={{ backgroundColor: '#222222' }}>
+    <div >
       <Notification />
       <AppBarPokemon />
       <Switch>

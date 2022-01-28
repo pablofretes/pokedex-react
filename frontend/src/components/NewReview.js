@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     text: {
         fontWeight: 'bold',
         fontSize: 25,
-        fontFamily: 'Roboto, monospace',
+        fontFamily: 'Cairo, monospace',
         textAlign: 'center',
         marginBottom: 0,
         color: 'white'
@@ -74,21 +74,23 @@ const NewReview = () => {
 
     return (
         <div className='root'>
-            <div className='imageContainer' style={{ backgroundColor: '#E5709B' }}>
-                <p className='text' style={{ textAlign: 'center'}}>{`Reviewing ${capsFirstLetter(pokemon.name)}`}</p>
-                <img className='image-individual' src={pokemon.sprite} alt={`${pokemon.name}'s sprite`}/>
-            </div>
-            <div className='imageContainer' style={{ backgroundColor: '#E5709B' }}>
-                <form onSubmit={onSubmit}>
-                    <input name="reviewInput" placeholder="Write a Review!" className='input' data-cy="new-review-input"/>
-                    <div className={classes.container}>
-                        <p className={classes.text}>Rate This Pokemon</p>
-                        <select name="reviewRating" data-cy="select-rating" className='rating-input'>
-                            {optionsArray.map(o => <option data-cy={`select-rating-${o}`} key={o} value={o}>{o}</option>)}
-                        </select>
-                    </div>
-                    <Button name="review-button" type="submit" className={`review-button ${classes.review}`} data-cy="review-form-button">Post Review</Button>
-                </form>
+            <div className='new-review-root'>
+                <div className='image-container-new-review'>
+                    <p className='text' style={{ textAlign: 'center'}}>{`Reviewing ${capsFirstLetter(pokemon.name)}`}</p>
+                    <img className='image-individual' src={pokemon.sprite} alt={`${pokemon.name}'s sprite`}/>
+                </div>
+                <div className='form-container'>
+                    <form onSubmit={onSubmit}>
+                        <input name="reviewInput" placeholder="Write a Review!" className='input' data-cy="new-review-input"/>
+                        <div className={classes.container}>
+                            <p className={classes.text}>Rate This Pokemon</p>
+                            <select name="reviewRating" data-cy="select-rating" className='rating-input'>
+                                {optionsArray.map(o => <option data-cy={`select-rating-${o}`} key={o} value={o}>{o}</option>)}
+                            </select>
+                        </div>
+                        <Button name="review-button" type="submit" className={`review-button ${classes.review}`} data-cy="review-form-button">Post Review</Button>
+                    </form>
+                </div>
             </div>
         </div>
     );

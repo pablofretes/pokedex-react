@@ -1,27 +1,26 @@
 import React from 'react';
-import { Button, makeStyles, AppBar, Toolbar, Typography, Box } from '@material-ui/core';
+import { Button, makeStyles, AppBar, Toolbar, Box } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import Filter from './Filter';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '../reducers/loginReducer';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  toolBar: {
     display: 'flex',
-    flexGrow: 1
-  },
-  appBar: {
     flexDirection: 'row',
-    flexWrap: 'nowrap'
+    flexWrap: 'nowrap',
+    justifyContent: 'space-around',
+  },
+  button: {
+    fontFamily: 'Cairo',
+    fontWeight: 'bolder'
   },
   filter: {
     position: 'absolute',
     top: 95,
     right: 50,
     width: '100%',
-  },
-  button: {
-    marginLeft: "auto"
   }
 }))
 
@@ -35,35 +34,25 @@ const AppBarPokemon = () => {
   }
 
   return (
-    <Box className={classes.root}>
-      <AppBar position="static" color="secondary" className={classes.appBar}>
-        <Toolbar variant="dense">
-          <Typography variant="h6" color="inherit">
-              <Button color="inherit" component={Link} to="/" data-cy='home-button'>
-                Home
-              </Button>
-              <Button color="inherit" component={Link} to="/pokemons" data-cy='pokedex-button'>
-                Pokedex
-              </Button>
-          </Typography>
-        </Toolbar>
-        <Toolbar variant="dense">
-          {user !== null ? (
-            <div>
-              <Button color="inherit" component={Link} to="/reviews" data-cy="reviews-button">Reviews</Button>
-              <Button onClick={handleLogOut} color="inherit" to="/login" data-cy="logout-button" component={Link} className="logout-button">
-                Log Out
-              </Button>
-            </div>
-          ) : (
-            <div>
-              <Button className={classes.button} color="inherit" component={Link} to="/login" data-cy="login-button">Log In</Button>
-              <Button className={classes.button} color="inherit" component={Link} to="/signUp" data-cy="signUp-button">Sign Up</Button>
-            </div>
-          )}
-        </Toolbar>
-        <Toolbar variant="dense">
+    <Box sx={{ flexGrow: 1 } }>
+      <AppBar position="static" color="secondary">
+        <Toolbar variant="dense" className={classes.toolBar}>
+          <Button color="inherit" component={Link} to="/" data-cy='home-button' className={classes.button}>
+            Home
+          </Button>
+          <Button color="inherit" component={Link} to="/pokemons" data-cy='pokedex-button' className={classes.button}>
+            Pokedex
+          </Button>
           <Filter />
+          {user !== null && <Button color="inherit" component={Link} to="/reviews" data-cy="reviews-button" className={classes.button}>Reviews</Button>}
+          {user !== null ? (
+            <Button onClick={handleLogOut} color="inherit" to="/login" data-cy="logout-button" component={Link} className={`logout-button ${classes.button}`}>
+              Log Out
+            </Button>
+          ) : (
+            <Button className={classes.button} color="inherit" component={Link} to="/login" data-cy="login-button">Log In</Button>
+          )}
+          {user === null && <Button className={classes.button} color="inherit" component={Link} to="/signUp" data-cy="signUp-button">Sign Up</Button>}
         </Toolbar>
       </AppBar>
     </Box>

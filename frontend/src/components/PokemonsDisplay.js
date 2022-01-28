@@ -10,21 +10,17 @@ import { capsFirstLetter } from '../utils/functions';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        padding: 10,
-        flexGrow: 1,
-        backGroundColor: '#222222'
+        padding: 30,
     },
     paper: {
         padding: theme.spacing(2),
-        color: theme.palette.text.secondary,
-        justifyContent: 'center'
     },
     gridItem : {
         textDecoration: 'none',
     },
-    p: {
+    text: {
         textAlign: 'center',
-        fontFamily: 'Roboto, monospace',
+        fontFamily: 'Cairo, monospace',
         fontWeight: 'bold'
     }
 }));
@@ -86,8 +82,8 @@ const PokemonsDisplay = () => {
                     <Grid container spacing={3}>
                         {pokemons.map((p) => (
                     <Grid item xs={3} key={p.name} className={classes.gridItem} component={Link} onClick={() => handleClick(p)} to={`/pokemons/${p.name}`} data-cy={`pokemon-button-${p.name}`}>
-                            <Paper className={classes.paper} style={{ backgroundColor: colors[p.types[0].type.name] }} elevation={10}>
-                                <p className={`textDisplay ${classes.p}`}>{capsFirstLetter(p.name)}</p>
+                            <Paper className={classes.paper} style={{ backgroundColor: colors[p.types[0].type.name] } }>
+                                <p className={`textDisplay ${classes.text}`}>{capsFirstLetter(p.name)}</p>
                                 <img className='image' alt={`${p.name}'s sprite`} src={p.sprites.other["official-artwork"]["front_default"]}/>
                             </Paper>
                     </Grid>

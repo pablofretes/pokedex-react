@@ -6,20 +6,8 @@ import Loading from './Loading';
 import { capsFirstLetter, isEmpty } from '../utils/functions';
 
 const useStyles = makeStyles((theme) => ({
-    type: {
-        height: 25,
-        fontSize: 18,
-        fontFamily: 'Roboto, monospace',
-        justifyContent: 'center',
-        textAlign: 'center',
-        fontWeight: 'bold',
-        color: 'black',
-        borderRadius: 60,
-        padding: 7,
-        margin: 5,
-    },
     reviewButton: {
-        backgroundColor: '#c2185b',
+        backgroundColor: '#D3D3D3',
         borderRadius: 5,
         padding: 8,
         height: 30,
@@ -65,12 +53,12 @@ const IndividualPokemon = () => {
         <div>
             {isEmpty(pokemon) ? <Loading /> : 
                 (
-                <div>
+                <div className='individual-container'>
                     <div className='root'>
-                        <div className='imageContainer' elevation={15} style={{ backgroundColor: colors[pokemon.types[0].type.name] }}>
+                        <div className='image-container' style={{ backgroundColor: colors[pokemon.types[0].type.name] }}>
                             <img className='image-individual' alt={`${pokemon.name}'s sprite`} src={pokemon.sprites.other["official-artwork"]["front_default"]}/>
                         </div>
-                        <div className='statsContainer' elevation={8} key={pokemon.name}>
+                        <div className='stats-container' elevation={8} key={pokemon.name}>
                             <p className='text'>#{pokemon.id}</p>
                             <p className='text'>{capsFirstLetter(pokemon.name)}</p>
                             {pokemon.stats.map(s => (
@@ -83,7 +71,7 @@ const IndividualPokemon = () => {
                     <div className='root'>
                         <div className='type-text-container'>
                             <div className='typesContainer'>
-                                {pokemon.types.map(t => <div className={classes.type} style={{ backgroundColor: colors[t.type.name]}}>{t.type.name.toUpperCase()}</div>)}
+                                {pokemon.types.map(t => <div className='type' style={{ backgroundColor: colors[t.type.name]}}>{t.type.name.toUpperCase()}</div>)}
                             </div>
                             <div className='textContainer'>
                                 <div>
