@@ -15,8 +15,9 @@ const useStyles = makeStyles((theme) => ({
         height: 50,
         textAlign: 'center',
         fontWeight: 'bold',
-        fontSize: 20,
-        margin: 'auto',
+        fontSize: 15,
+        margin: 10,
+        fontFamily: 'Cairo',
         marginTop: 40
     },
     text: {

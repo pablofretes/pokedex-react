@@ -1,11 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { makeStyles, Button } from '@material-ui/core';
+import { makeStyles, Button, Grid, Paper } from '@material-ui/core';
 import { deleteReview } from '../reducers/reviewsReducer';
 import { capsFirstLetter } from '../utils/functions';
 import { notificationSuccess } from '../reducers/notificationReducer';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     delete: {
         backgroundColor: '#c2185b',
         borderRadius: 5,
@@ -17,6 +17,12 @@ const useStyles = makeStyles(() => ({
         margin: 10,
         fontFamily: 'Cairo',
         alignSelf: 'center'
+    },
+    paper: {
+        marginTop: 15,
+        animation: 'ease-in-out',
+        padding: theme.spacing(2),
+        backgroundColor: 'lightpink',
     },
 }))
 
@@ -42,10 +48,12 @@ const Reviews = () => {
         <div className='reviews-root'>  
             {userReviews.length === 0 ? (
                 <div className='no-reviews'><p>You haven't reviewed a pokemon yet</p></div>
-                ) : (
-                userReviews.map(r => {
+                ) : (    
+                <Grid container spacing={3}>
+                {userReviews.map(r => {
                     return (
-                    <div className='review-container-style'>
+                    <Grid item xs={3} >
+                        <Paper className={`${classes.paper} review-container-style`}>
                             <div className='image-review-container'>
                                 <img src={r.pokemon.sprite} alt={`${r.pokemon.name}'s sprite`}/>
                             </div>
@@ -58,9 +66,11 @@ const Reviews = () => {
                                     <Button className={classes.delete} onClick={() => handleDelete(r)} type="button" data-cy="delete-review-button">Delete</Button>
                                 </div>
                             </div>
-                        </div>
+                        </Paper>
+                    </Grid>
                     );
-                })
+                })})
+                </Grid>
             )}
         </div>
     );
