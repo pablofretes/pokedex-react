@@ -6,7 +6,7 @@ html, body {
 }
 
 .individual-container {
-    width: 85%;
+    width: 100%;
     margin: 0 auto;
     margin-top: 15px;
 }
@@ -22,7 +22,7 @@ html, body {
 
 .type {
     height: 19%;
-    font-size: 18px;
+    font-size: 2vw;
     font-family: Cairo, monospace;
     justify-content: center;
     text-align: center;
@@ -30,7 +30,8 @@ html, body {
     color: black;
     padding: 7px;
     margin: 5px;
-    box-shadow: 2px 2px 2px 1px #8b089de2;
+    box-shadow: 2px 0px 5px 5px #8b089de2;
+    margin-bottom: 20px;
 }
 
 .root {
@@ -41,38 +42,26 @@ html, body {
     margin: 0 auto;
 }
 
-.stats-container {
-    padding: 10px;
-    width: 25%;
+
+.image-container {
+    height: 50%;
+    width: auto;
     text-align: center;
     background-color: lightpink;
     flex-direction: row;
     flex-wrap: nowrap;
-    margin: 7px;
+    height: 50%;
+    width: auto;
+    margin-right: 5px;
     box-shadow: 2px 2px 2px 1px #8b089de2;
 }
 
-.image-container {
-    width: 30%;
-    height: auto;
-    margin: 7px 5px;
-    box-shadow: 2px 2px 2px 1px #8b089de2;
-}
-
-.typesContainer {
+.types-container {
     align-self: center;
     width: 100%;
     margin: 7px;
-}
-
-.type-text-container {
-    width: 50%;
-    margin: 7px;
-    background-color: lightpink;
     overflow: auto;
-    display: flex;
-    flex-flow: row wrap;
-    box-shadow: 2px 2px 2px 1px #8b089de2;
+    margin: 0 auto;
 }
 
 .text {
@@ -80,8 +69,7 @@ html, body {
     font-family: Cairo, monospace;
     font-weight: bolder;
     color: black;
-    font-size: 16px;
-    margin-left: 5px;
+    font-size: 1.5vw;
 }
 
 .text-content {
