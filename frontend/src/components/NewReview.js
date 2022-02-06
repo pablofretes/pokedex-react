@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, makeStyles } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { newReview } from '../reducers/reviewsReducer';
@@ -8,7 +8,6 @@ import { notificationError } from '../reducers/notificationReducer';
 
 const useStyles = makeStyles((theme) => ({
     review: {
-        display: 'block',
         backgroundColor: '#c2185b',
         borderRadius: 5,
         padding: 8,
@@ -16,7 +15,6 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
         fontWeight: 'bold',
         fontSize: 15,
-        margin: 10,
         fontFamily: 'Cairo',
         marginTop: 40
     },
@@ -31,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const NewReview = () => {
+    const [sliderValue, setSliderValue] = useState(0);
     const classes = useStyles();
     const dispatch = useDispatch();
     const pokemonObject = useSelector(state => state.individualPokemon);
@@ -80,16 +79,16 @@ const NewReview = () => {
                     <p className='text' style={{ textAlign: 'center'}}>{`Reviewing ${capsFirstLetter(pokemon.name)}`}</p>
                     <img className='image-individual' src={pokemon.sprite} alt={`${pokemon.name}'s sprite`}/>
                 </div>
-                <div className='form-container'>
+                <div >
                     <form onSubmit={onSubmit}>
-                        <input name="reviewInput" placeholder="Write a Review!" className='input' data-cy="new-review-input"/>
-                        <div className={classes.container}>
-                            <p className={classes.text}>Rate This Pokemon</p>
-                            <select name="reviewRating" data-cy="select-rating" className='rating-input'>
-                                {optionsArray.map(o => <option data-cy={`select-rating-${o}`} key={o} value={o}>{o}</option>)}
-                            </select>
+                        <div className='form-container'>
+                            <input name="reviewInput" placeholder="Write a Review!" className='input' data-cy="new-review-input"/>
+                            <div className={classes.container}>
+                                <p className={classes.text}>Rate This Pokemon: {sliderValue}</p>
+                                <input name="reviewRating" data-cy="select-rating" className='rating-input' type='range' min={0} max={100} onChange={(e) => setSliderValue(e.target.value)}/>
+                            </div>
+                            <Button name="review-button" type="submit" className={classes.review} data-cy="review-form-button">Post Review</Button>
                         </div>
-                        <Button name="review-button" type="submit" className={`review-button ${classes.review}`} data-cy="review-form-button">Post Review</Button>
                     </form>
                 </div>
             </div>
