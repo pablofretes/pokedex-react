@@ -63,16 +63,10 @@ const IndividualPokemon = () => {
                             {pokemon.stats.map(s => (
                                 <p className='text' key={s.stat.name}>{capsFirstLetter(s.stat.name)}: {s.base_stat}</p>
                             ))}
-                            {/*THIS BUTTON SHOULD ONLY EXIST IF THERE IS A USER LOGGED IN BECAUSE ONLY LOGGED USERS CAN MAKE REVIEWS.*/}
-                            {user && <Button data-cy={`review-button-${pokemon.name}`} className={classes.reviewButton} onClick={() => handleReview(pokemon)}>Review</Button>}
-                        </div>
-                    </div>
-                    <div className='root'>
-                        <div className='type-text-container'>
-                            <div className='typesContainer'>
-                                {pokemon.types.map(t => <div className='type' style={{ backgroundColor: colors[t.type.name]}}>{t.type.name.toUpperCase()}</div>)}
-                            </div>
                             <div className='textContainer'>
+                                <div className='typesContainer'>
+                                    {pokemon.types.map(t => <div className='type' style={{ backgroundColor: colors[t.type.name]}}>{t.type.name.toUpperCase()}</div>)}
+                                </div>
                                 <div>
                                 <p className='text'>Ability: <br></br><p className='text-content'>{capsFirstLetter(pokemon.abilities[0].ability.name)}</p></p>
                                 </div>
@@ -80,6 +74,8 @@ const IndividualPokemon = () => {
                                 {pokemon["held_items"].length > 0 ? <p className='text'>Items: <br></br><ul>{pokemon["held_items"].map(i => <li className='text-content'>{capsFirstLetter(i.item.name)}</li>)}</ul></p> : null}
                                 </div>
                             </div>
+                            {/*THIS BUTTON SHOULD ONLY EXIST IF THERE IS A USER LOGGED IN BECAUSE ONLY LOGGED USERS CAN MAKE REVIEWS.*/}
+                            {user && <Button data-cy={`review-button-${pokemon.name}`} className={classes.reviewButton} onClick={() => handleReview(pokemon)}>Review</Button>}
                         </div>
                     </div>
                 </div>
