@@ -58,8 +58,6 @@ const IndividualPokemon = () => {
                     <div className='root'>
                         <div className='image-container' style={{ backgroundColor: colors[pokemon.types[0].type.name] }}>
                             <img className='image-individual' alt={`${pokemon.name}'s sprite`} src={pokemon.sprites.other["official-artwork"]["front_default"]}/>
-                        </div>
-                        <div className='stats-container' elevation={8} key={pokemon.name}>
                             <p className='text'>#{pokemon.id}</p>
                             <p className='text'>{capsFirstLetter(pokemon.name)}</p>
                             {pokemon.stats.map(s => (
