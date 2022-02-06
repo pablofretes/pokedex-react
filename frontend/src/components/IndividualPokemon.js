@@ -63,8 +63,8 @@ const IndividualPokemon = () => {
                             {pokemon.stats.map(s => (
                                 <p className='text' key={s.stat.name}>{capsFirstLetter(s.stat.name)}: {s.base_stat}</p>
                             ))}
-                            <div className='textContainer'>
-                                <div className='typesContainer'>
+                            <div className='types-container'>
+                                <div >
                                     {pokemon.types.map(t => <div className='type' style={{ backgroundColor: colors[t.type.name]}}>{t.type.name.toUpperCase()}</div>)}
                                 </div>
                                 <div>
