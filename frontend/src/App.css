@@ -131,12 +131,8 @@ html, body {
     height: 50px;
     height: 150px;
     align-self: center;
+    border-radius: 0%;
 }
-
-.review-button {
-    width: 80%
-}
-
 /*reviews*/
 
 .reviews-root{
@@ -229,11 +225,14 @@ html, body {
     box-shadow: 2px 2px 2px 1px #8b089de2;
     margin: 0 auto;
     padding: 7px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    text-align: center;
 }
 
 .rating-input {
     display: block;
-    width: 25%;
+    width: 60%;
     height: 10%;
     margin: 0 auto;
     box-shadow: 2px 2px 2px 1px #8b089de2;
