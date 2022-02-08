@@ -5,6 +5,29 @@ html, body {
     background-color: #222222;
 }
 
+.display-pokemons {
+    padding: 30px;
+    margin: 0 auto;
+    width: 90%;
+}
+
+.logo {
+    margin: 0 auto;
+    margin-top: 80px;
+    width: 45%;
+    height: 'auto';
+    align-self: 'center';
+}
+
+.pikachu-button {
+    width: 30% !important;
+    height: 35% !important;
+}
+
+.pikachu-img {
+    width: 80%;
+}
+
 .individual-container {
     width: 100%;
     margin: 0 auto;
@@ -37,7 +60,7 @@ html, body {
 .root {
     display: flex;
     justify-content: center;
-    padding: 10;
+    padding: 10px;
     width: 100%;
     margin: 0 auto;
 }
@@ -53,7 +76,7 @@ html, body {
     height: 50%;
     width: auto;
     margin-right: 5px;
-    box-shadow: 2px 2px 2px 1px #8b089de2;
+    box-shadow: 2px 2px 3px 2px #8b089de2;
 }
 
 .types-container {
@@ -215,4 +238,11 @@ html, body {
     height: 10%;
     margin: 0 auto;
     box-shadow: 2px 2px 2px 1px #8b089de2;
+}
+
+.button {
+    font-family: 'Cairo' !important;
+    font-weight: 'bolder' !important;
+    font-size: 1.5vw !important;
+    color: white !important;
 }
