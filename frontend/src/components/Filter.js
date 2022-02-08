@@ -8,14 +8,10 @@ import { notificationError } from '../reducers/notificationReducer';
 import { setFilter } from '../reducers/filterReducer';
 
 const useStyles = makeStyles((theme) => ({
-    button: {
-        fontFamily: 'Cairo',
-        fontWeight: 'bolder',
-        color: 'white'
-    },
     filter: {
         fontFamily: 'Cairo',
         fontWeight: 'bolder',
+        width: 100
     }
 }))
 
@@ -58,7 +54,7 @@ const Filter = () => {
         <div>
             <form onSubmit={handleChange}>
                 <input placeholder='Search...' name="filterInput" data-cy="searchBar" className={classes.filter} />
-                <Button type="submit" data-cy="searchBar-button" className={classes.button} >Search</Button>
+                <Button type="submit" data-cy="searchBar-button" className='button' >Search</Button>
             </form>
         </div>
     );
