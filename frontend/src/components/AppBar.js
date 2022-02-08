@@ -12,10 +12,6 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'nowrap',
     justifyContent: 'space-around',
   },
-  button: {
-    fontFamily: 'Cairo',
-    fontWeight: 'bolder'
-  },
   filter: {
     position: 'absolute',
     top: 95,
@@ -37,22 +33,22 @@ const AppBarPokemon = () => {
     <Box sx={{ flexGrow: 1 } }>
       <AppBar position="static" color="secondary">
         <Toolbar variant="dense" className={classes.toolBar}>
-          <Button color="inherit" component={Link} to="/" data-cy='home-button' className={classes.button}>
+          <Button color="inherit" component={Link} to="/" data-cy='home-button' className='button'>
             Home
           </Button>
-          <Button color="inherit" component={Link} to="/pokemons" data-cy='pokedex-button' className={classes.button}>
+          <Button color="inherit" component={Link} to="/pokemons" data-cy='pokedex-button' className='button'>
             Pokedex
           </Button>
           <Filter />
-          {user !== null && <Button color="inherit" component={Link} to="/reviews" data-cy="reviews-button" className={classes.button}>Reviews</Button>}
+          {user !== null && <Button color="inherit" component={Link} to="/reviews" data-cy="reviews-button" className='button'>Reviews</Button>}
           {user !== null ? (
-            <Button onClick={handleLogOut} color="inherit" to="/login" data-cy="logout-button" component={Link} className={`logout-button ${classes.button}`}>
+            <Button onClick={handleLogOut} color="inherit" to="/login" data-cy="logout-button" component={Link} className={`logout-button button`}>
               Log Out
             </Button>
           ) : (
-            <Button className={classes.button} color="inherit" component={Link} to="/login" data-cy="login-button">Log In</Button>
+            <Button className='button' color="inherit" component={Link} to="/login" data-cy="login-button">Log In</Button>
           )}
-          {user === null && <Button className={classes.button} color="inherit" component={Link} to="/signUp" data-cy="signUp-button">Sign Up</Button>}
+          {user === null && <Button className='button' color="inherit" component={Link} to="/signUp" data-cy="signUp-button">Sign Up</Button>}
         </Toolbar>
       </AppBar>
     </Box>
