@@ -12,13 +12,6 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         justifyContent: 'center'
     },
-    logo: {
-        marginTop: 80,
-        marginBottom: 50,
-        width: 500,
-        height: 'auto',
-        alignSelf: 'center'
-    },
     pokedex: {
         backgroundColor: '#E5709B',
         height: 150,
@@ -26,10 +19,6 @@ const useStyles = makeStyles((theme) => ({
         width: width,
         borderRadius: width/2 
     },
-    pikachu: {
-        height: 130,
-        width: 'auto'
-    }
 }));
 
 const width = 250
@@ -38,9 +27,9 @@ const Home = () => {
     const classes = useStyles();
     return (
         <div className={classes.root}>
-            <img className={classes.logo} src={pokedex} alt='pokedex logo' data-testid='pokedex-logo'/>
-            <Button data-cy="pokedex-pikachu" className={classes.pokedex} component={Link} to="/pokemons" data-testid='pikachu-button'>
-                <img  className={classes.pikachu} src={pikachu} alt='imagen pikachu'/>
+            <img className='logo' src={pokedex} alt='pokedex logo' data-testid='pokedex-logo'/>
+            <Button data-cy="pokedex-pikachu" className={`pikachu-button ${classes.pokedex}`} component={Link} to="/pokemons" data-testid='pikachu-button'>
+                <img  className='pikachu-img' src={pikachu} alt='imagen pikachu'/>
             </Button>
         </div>
     );
