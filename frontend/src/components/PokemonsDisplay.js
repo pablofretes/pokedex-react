@@ -73,10 +73,11 @@ const PokemonsDisplay = () => {
         ghost: '#5c6cac',
         ice: '#98D8D8',
         steel: '#787887',
+        dark: '#705746'
     };
 
     return (
-        <div className={classes.root}>
+        <div className='display-pokemons'>
                 {pokemons.length < 18 ? <Loading /> : 
                 (
                     <Grid container spacing={3}>
