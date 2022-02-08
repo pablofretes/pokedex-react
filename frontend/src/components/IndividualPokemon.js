@@ -47,7 +47,8 @@ const IndividualPokemon = () => {
         normal: '#F5F5F5',
         ghost: '#5c6cac',
         ice: '#98D8D8',
-        steel: '#787887'
+        steel: '#787887',
+        dark: '#705746'
     };
 
     return (
