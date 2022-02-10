@@ -65,12 +65,5 @@ describe('Pagination', function (){
         cy.should('not.have.value', 'Charmander');
         cy.should('not.have.value', 'Squirtle');
         cy.contains('Spearow');
-        cy.contains('#28');
-        cy.contains('#21');
-        cy.contains('#24');
-        cy.contains('#37');
-        cy.contains('#33');
-        cy.should('not.have.value', '#7');
-        cy.should('not.have.value', '#107');
     });
 })
