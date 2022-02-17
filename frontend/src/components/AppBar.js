@@ -7,16 +7,16 @@ import { logoutUser } from '../reducers/loginReducer';
 
 const useStyles = makeStyles((theme) => ({
   toolBar: {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'nowrap',
-    justifyContent: 'space-around',
+  display: 'flex',
+  flexDirection: 'row',
+  flexWrap: 'nowrap',
+  justifyContent: 'space-around',
   },
   filter: {
-    position: 'absolute',
-    top: 95,
-    right: 50,
-    width: '100%',
+  position: 'absolute',
+  top: 95,
+  right: 50,
+  width: '100%',
   }
 }))
 
@@ -26,32 +26,32 @@ const AppBarPokemon = () => {
   const user = useSelector(state => state.login);
 
   const handleLogOut = () => {
-    dispatch(logoutUser());
+  dispatch(logoutUser());
   }
 
   return (
-    <Box sx={{ flexGrow: 1 } }>
-      <AppBar position="static" color="secondary">
-        <Toolbar variant="dense" className={classes.toolBar}>
-          <Button color="inherit" component={Link} to="/" data-cy='home-button' className='button'>
-            Home
-          </Button>
-          <Button color="inherit" component={Link} to="/pokemons" data-cy='pokedex-button' className='button'>
-            Pokedex
-          </Button>
-          <Filter />
-          {user !== null && <Button color="inherit" component={Link} to="/reviews" data-cy="reviews-button" className='button'>Reviews</Button>}
-          {user !== null ? (
-            <Button onClick={handleLogOut} color="inherit" to="/login" data-cy="logout-button" component={Link} className={`logout-button button`}>
-              Log Out
-            </Button>
-          ) : (
-            <Button className='button' color="inherit" component={Link} to="/login" data-cy="login-button">Log In</Button>
-          )}
-          {user === null && <Button className='button' color="inherit" component={Link} to="/signUp" data-cy="signUp-button">Sign Up</Button>}
-        </Toolbar>
-      </AppBar>
-    </Box>
+  <Box sx={{ flexGrow: 1 } }>
+    <AppBar position="static" color="secondary">
+    <Toolbar variant="dense" className={classes.toolBar}>
+      <Button color="inherit" component={Link} to="/" data-cy='home-button' className='button'>
+      Home
+      </Button>
+      <Button color="inherit" component={Link} to="/pokemons" data-cy='pokedex-button' className='button'>
+      Pokedex
+      </Button>
+      <Filter />
+      {user !== null && <Button color="inherit" component={Link} to="/reviews" data-cy="reviews-button" className='button'>Reviews</Button>}
+      {user !== null ? (
+      <Button onClick={handleLogOut} color="inherit" to="/login" data-cy="logout-button" component={Link} className='button'>
+        Log Out
+      </Button>
+      ) : (
+      <Button className='button' color="inherit" component={Link} to="/login" data-cy="login-button">Log In</Button>
+      )}
+      {user === null && <Button className='button' color="inherit" component={Link} to="/signUp" data-cy="signUp-button">Sign Up</Button>}
+    </Toolbar>
+    </AppBar>
+  </Box>
   );
 }
 

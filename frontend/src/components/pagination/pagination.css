@@ -1,0 +1,45 @@
+.pagination-button {
+  width: 5vw;
+  font-size: 2vw;
+  border-radius: 10px;
+  height: auto;
+  background-color: #E5709B;
+  font-family: Roboto, monospace;
+  font-weight: bold;
+  padding-left: 3px;
+  padding-right: 3px;
+  margin-right: 0.3rem; 
+}
+
+.pagination-wrapper {
+  width: 100%;
+  margin-top: 1.5rem;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+
+.pagination-button-active {
+  width: 5vw;
+  font-size: 2vw;
+  border-radius: 10px;
+  background-color: white;
+  color: black;
+  font-family: Roboto, monospace;
+  font-weight: bold;
+  padding-left: 6px;
+  padding-right: 6px;
+  margin-right: 0.3rem; 
+}
+
+.pagination-next-previous {
+  width: 5vw;
+  font-size: 2vw;
+  border-radius: 10px;
+  background-color: #E5709B;
+  font-family: Roboto, monospace;
+  font-weight: bold;
+  padding-left: 3px;
+  padding-right: 3px;
+  margin-right: 0.3rem; 
+}

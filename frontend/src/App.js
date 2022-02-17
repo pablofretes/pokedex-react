@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react';
-import PokemonsDisplay from './components/PokemonsDisplay';
+import PokemonsDisplay from './components/pokemonsDisplay/PokemonsDisplay';
 import { Switch, Route } from 'react-router-dom';
-import Home from './components/Home';
+import Home from './components/home/Home';
 import AppBarPokemon from './components/AppBar';
-import IndividualPokemon from './components/IndividualPokemon';
+import IndividualPokemon from './components/individualPokemon/IndividualPokemon';
 import Notification from './components/Notification';
 import Login from '../src/components/Login';
 import SignUp from '../src/components/SignUp';
-import Reviews from '../src/components/Reviews';
+import Reviews from '../src/components/reviews/Reviews';
 import { fetchEverything } from './reducers/pokemonsReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { existingLogin } from './reducers/loginReducer';
-import './App.css'
-import NewReview from './components/NewReview';
+import './App.css';
+import NewReview from './components/newReview/NewReview';
 import { initReviews } from './reducers/reviewsReducer';
 
 const App = () => {

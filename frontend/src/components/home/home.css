@@ -1,0 +1,16 @@
+.logo {
+  margin: 0 auto;
+  margin-top: 80px;
+  width: 45%;
+  height: 'auto';
+  align-self: 'center';
+}
+
+.pikachu-button {
+  width: 30% !important;
+  height: 35% !important;
+}
+
+.pikachu-img {
+  width: 80%;
+}
