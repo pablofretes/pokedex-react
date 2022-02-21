@@ -1,16 +1,278 @@
-.logo {
-  margin: 0 auto;
-  margin-top: 80px;
-  width: 45%;
-  height: 'auto';
-  align-self: 'center';
+.home-root {
+	margin: auto;
+	display: flex;
+	flex-flow: row nowrap;
+	text-align: center;
+	width: 90%;
+	height: 90%;
 }
 
-.pikachu-button {
-  width: 30% !important;
-  height: 35% !important;
+.text-pokedex-link {
+	font-size: 3vw;
+	margin: 0 auto;
+	font-family: Cairo, sans-serif;
+	font-weight: bolder;
+	color: black;
+	text-align: center;
 }
 
-.pikachu-img {
-  width: 80%;
+.pokedex-container-inside {
+	border-radius: 10px;
+  width: 40%;
+  height: 60%;
+  display: flex;
+  background: #fff;
+  padding: 10px;
+	margin-top: 2rem;
+	text-decoration: none;
+	transition: 1.7s ease-in-out;
+}
+
+.filter-container-inside {
+	border-radius: 10px;
+  width: 40%;
+  height: 60%;
+	display: flex;
+	margin-top: 2rem;
+	padding: 10px;
+	transition: 1.7s ease-in-out;
+	text-align: center;
+	justify-content: center;
+	background-color: #fff;
+}
+
+.filter-center {
+	margin: 0 auto;
+	margin-top: 2rem;
+}
+
+.filter-button-home {
+  font-family: 'Cairo';
+  font-weight: 'bolder';
+  font-size: 1.2vw;
+	border-radius: 7px;
+	background-color: black;
+  color: #fff;
+	line-height: 50%;
+	text-align: center;
+	height: 60px;
+	width: 120px;
+	margin-left: 5px;
+	transition: 0.7s ease-in-out;
+}
+
+.filter-button-home:hover {
+	background-color: rgb(33, 16, 27);
+	transition: 0.7s ease-in-out;
+	cursor: pointer;
+}
+
+.filter-input-home {
+	font-family: Cairo, sans-serif;
+	font-weight: bolder;
+	width: 60%;
+	height: 50px;
+	border-radius: 10px;
+}
+
+@media screen and (min-width: 800px){
+	.pikachu-img {
+		width: 80%;
+	}
+
+	.pikachu-button {
+		height: 60%;
+		width: auto;
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+	
+	.pokedex-container-inside {
+		border-radius: 10px;
+		width: 40%;
+		height: 60%;
+		display: flex;
+		background: #fff;
+		padding: 10px;
+		color: white;
+		position: absolute;
+		top: 50%;
+		left: 5%;
+		transform: translateY(-50%);
+		margin-top: 2rem;
+		text-decoration: none;
+		transition: 1.7s ease-in-out;
+	}
+	
+	.pokedex-container-inside:hover {
+		transition: 1.7s ease-in-out;
+		background-color: burlywood;
+	}
+	
+	.filter-container-inside {
+		border-radius: 10px;
+		width: 40%;
+		height: 60%;
+		display: flex;
+		position: absolute;
+		padding: 10px;
+		background-color: #fff;
+		top: 50%;
+		right: 5%;
+		transform: translateY(-50%);
+		margin-top: 2rem;
+		transition: 1.7s ease-in-out;
+	}
+	
+	.filter-container-inside:hover {
+		transition: 1.7s ease-in-out;
+		background-color: burlywood;
+	}
+	
+	.filter-center {
+		margin: 0 auto;
+		position: absolute;
+		top: 50%;
+		margin-top: 2rem;
+	}
+	
+	.filter-button-home {
+		font-family: 'Cairo';
+		font-weight: 'bolder';
+		font-size: 1.2vw;
+		border-radius: 7px;
+		background-color: black;
+		color: #fff;
+		line-height: 50%;
+		text-align: center;
+		height: 60px;
+		width: 120px;
+		margin-left: 5px;
+		transition: 0.7s ease-in-out;
+	}
+	
+	.filter-button-home:hover {
+		background-color: rgb(33, 16, 27);
+		transition: 0.7s ease-in-out;
+	}
+	
+	.filter-input-home {
+		font-family: Cairo, sans-serif;
+		font-weight: bolder;
+		width: 60%;
+		height: 50px;
+		border-radius: 10px;
+	}
+}
+
+@media screen and (max-width: 800px){
+	.pikachu-button {
+		width: 80%;
+		height: auto;
+		margin: 0 auto;
+		margin-top: 15%;
+	}
+
+	.pikachu-img{
+		width: 70%;
+	}
+
+	.home-root {
+		margin: auto;
+		display: flex;
+		flex-flow: column wrap;
+		text-align: center;
+		width: 90%;
+		height: 90%;
+	}
+
+	.pokedex-container-inside {
+		width: 90%;
+		height: 60vh;
+		margin-top: 5rem;
+		display: block;
+	}
+
+	.filter-container-inside {
+		width: 90%;
+		height: 125px;
+		margin-top: 2rem;
+		display: block;
+	}
+
+}
+
+@media screen and (max-width: 600px){
+	.pikachu-button {
+		width: 65%;
+		height: auto;
+		margin: 0 auto;
+		margin-top: 15%;
+	}
+
+	.pikachu-img{
+		width: 70%;
+	}
+
+	.home-root {
+		margin: auto;
+		display: flex;
+		flex-flow: column wrap;
+		text-align: center;
+		width: 90%;
+		height: 90%;	
+	}
+
+	.pokedex-container-inside {
+		width: 90%;
+		height: 40vh;
+		margin-top: 5rem;
+		display: block;
+	}
+	.filter-container-inside {
+		width: 90%;
+		height: 125px;
+		margin-top: 2rem;
+		display: block;
+	}
+}
+
+
+@media screen and (max-width: 400px){
+
+	.pikachu-button {
+		width: 100%;
+		height: auto;
+		margin: 0 auto;
+		margin-top: 15%;
+	}
+
+	.pikachu-img{
+		width: 70%;
+	}
+
+	.home-root {
+		margin: auto;
+		display: flex;
+		flex-flow: column wrap;
+		text-align: center;
+		width: 90%;
+		height: 90%;
+		display: block;
+	}
+
+	.pokedex-container-inside {
+		width: 90%;
+		height: 30vh;
+		display: block;
+		margin-top: 5rem;
+	}
+
+	.filter-container-inside {
+		width: 90%;
+		height: 125px;
+		margin-top: 2rem;
+		display: block;
+	}
 }

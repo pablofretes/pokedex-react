@@ -3,11 +3,15 @@
 	width: 70%;
   padding: 20px;
   height: 80%;
-  margin-top: 3rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-flow: column wrap;
+  margin-top: 7.5rem;
   margin-bottom: 3rem;
-  box-shadow: 2px 2px 2px 1px #8b089de2;
-  background-color: lightpink;
+	background: rgb(204, 108, 108);
   justify-content: center;
+	border-radius: 8px;
 }
 
 .image-container-new-review {
@@ -15,10 +19,18 @@
 	justify-content: center;
 	align-items: center;
 	flex-flow: column wrap;
-  width: 45%;
+  width: 90%;
   height: auto;
   margin: 0 auto;
   margin-bottom: 10px;
+}
+
+.image-container-root{
+	background-color: blanchedalmond;
+	width: 90%;
+  height: auto;
+  margin: 0 auto;
+	border-radius: 8px;
 }
 
 .image-review {
@@ -28,15 +40,21 @@
 }
 
 .form-container {
-  background-color: rgb(80, 72, 72);
-  width: 85%;
+  width: 100%;
   height: auto;
-  box-shadow: 2px 2px 2px 1px #8b089de2;
   margin: 0 auto;
   padding: 7px;
   flex-direction: row;
   flex-wrap: nowrap;
   text-align: center;
+	color: black;
+}
+
+.form-container-root {
+	width: 90%;
+	margin-top: 0.5rem;
+	border-radius: 8px;
+  background-color: rgb(31, 123, 209);
 }
 
 .rating-input {
@@ -44,14 +62,14 @@
   width: 60%;
   height: 10%;
   margin: 0 auto;
-  box-shadow: 2px 2px 2px 1px #8b089de2;
+	color: black;
 }
 
 .text {
   text-align: center;
   font-family: Cairo, monospace;
   font-weight: bolder;
-  color: red;
+  color: black;
   font-size: 1.8vw;
 }
 

@@ -1,22 +1,12 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router';
 import getPokemons from '../services/pokemons';
-import { Button, makeStyles } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOnePokemon } from '../reducers/individualPokemonReducer';
 import { notificationError } from '../reducers/notificationReducer';
 import { setFilter } from '../reducers/filterReducer';
 
-const useStyles = makeStyles((theme) => ({
-  filter: {
-    fontFamily: 'Cairo',
-    fontWeight: 'bolder',
-    width: 100
-  }
-}))
-
-const Filter = () => {
-  const classes = useStyles();
+const Filter = ({ buttonStyle, inputStyle }) => {
   const dispatch = useDispatch();
   const filter = useSelector(state => state.filter);
   const history = useHistory();
@@ -31,11 +21,13 @@ const Filter = () => {
           if(searchedPokemon.name === filter){
             history.push(`/pokemons/${searchedPokemon.name}`);
           };
+					dispatch(setFilter(''));
         }
       } catch (error) {
         //IF IT FAILS WE SHOW THAT IN A NOTIFICATION AND THEN RETURN NULL SO NOTHING ELSE HAPPENS
         console.error(error);
         dispatch(notificationError('That pokémon doesnt exist! Try Again!'));
+				dispatch(setFilter(''));
         return null;
       }
     } 
@@ -52,9 +44,9 @@ const Filter = () => {
 
   return (
     <div>
-      <form onSubmit={handleChange}>
-        <input placeholder='Search...' name="filterInput" data-cy="searchBar" className={classes.filter} />
-        <Button type="submit" data-cy="searchBar-button" className='button' >Search</Button>
+      <form className='filter-form' onSubmit={handleChange}>
+        <input placeholder='Search...' name="filterInput" data-cy="searchBar" className={inputStyle} />
+        <button type="submit" data-cy="searchBar-button" className={buttonStyle} >Search</button>
       </form>
     </div>
   );

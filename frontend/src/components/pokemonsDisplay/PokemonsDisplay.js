@@ -10,9 +10,6 @@ import { capsFirstLetter } from '../../utils/functions';
 import './pokemonsDisplay.css';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    padding: 30,
-  },
   paper: {
     padding: theme.spacing(2),
   },
@@ -79,8 +76,16 @@ const PokemonsDisplay = () => {
         {pokemons.length < 18 ? <Loading /> : 
         (
           <Grid container spacing={3}>
-            {pokemons.map((p) => (
-          <Grid item xs={3} key={p.name} style={{ textDecoration: 'none' } } component={Link} onClick={() => handleClick(p)} to={`/pokemons/${p.name}`} data-cy={`pokemon-button-${p.name}`}>
+            {pokemons.sort((a,b) => a.id - b.id).map((p) => (
+          <Grid 
+						item 
+						xs={3} 
+						key={p.name} 
+						style={{ textDecoration: 'none' } } 
+						component={Link} 
+						onClick={() => handleClick(p)} 
+						to={`/pokemons/${p.name}`} 
+						data-cy={`pokemon-button-${p.name}`}>
               <Paper className={classes.paper} style={{ backgroundColor: colors[p.types[0].type.name] } }>
                 <p className={`text-display ${classes.text}`}>{capsFirstLetter(p.name)}</p>
                 <img className='image' alt={`${p.name}'s sprite`} src={p.sprites.other["official-artwork"]["front_default"]}/>

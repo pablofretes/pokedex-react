@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Cairo, monospace',
     textAlign: 'center',
     marginBottom: 0,
-    color: 'white'
+    color: 'white',
   },
 }))
 
@@ -76,11 +76,13 @@ const NewReview = () => {
   return (
     <div className='root'>
       <div className='new-review-root'>
-        <div className='image-container-new-review'>
-          <p className='text' style={{ textAlign: 'center'}}>{`Reviewing ${capsFirstLetter(pokemon.name)}`}</p>
-          <img className='image-review' src={pokemon.sprite} alt={`${pokemon.name}'s sprite`}/>
-        </div>
-        <div >
+				<div className='image-container-root'>
+					<div className='image-container-new-review'>
+						<p className='text' style={{ textAlign: 'center'}}>{`Reviewing ${capsFirstLetter(pokemon.name)}`}</p>
+						<img className='image-review' src={pokemon.sprite} alt={`${pokemon.name}'s sprite`}/>
+					</div>
+				</div>
+        <div className='form-container-root'>
           <form onSubmit={onSubmit}>
             <div className='form-container'>
               <input name="reviewInput" placeholder="Write a Review!" className='input' data-cy="new-review-input"/>

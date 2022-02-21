@@ -11,9 +11,9 @@ const Notification = () => {
   return (
     <div>
       {notification.type === 'success' ? (
-        <Alert severity='success'>{notification.message}</Alert>    
+        <Alert className='notification-style' severity='success'>{notification.message}</Alert>    
       ) : (
-        <Alert severity='error'>{notification.message}</Alert>
+        <Alert className='notification-style' severity='error'>{notification.message}</Alert>
       )}
     </div>
   )

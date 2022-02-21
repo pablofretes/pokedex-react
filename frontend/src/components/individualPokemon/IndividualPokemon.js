@@ -53,21 +53,16 @@ const IndividualPokemon = () => {
   };
 
   return (
-    <div>
+    <div className='root-rootie'>
       {isEmpty(pokemon) ? <Loading /> : 
         (
         <div className='individual-root' >
-					<div className='indiv-something'>
-						<div className='individual-container' style={{ backgroundColor: colors[pokemon.types[0].type.name] }}>
+						<div className='individual-container'>
 							<div className='image-container' >
 								<img className='image-individual' alt={`${pokemon.name}'s sprite`} src={pokemon.sprites.other["official-artwork"]["front_default"]}/>
 							</div>
 							<div className='types-container'>
 								{pokemon.types.map(t => <div className='type' style={{ backgroundColor: colors[t.type.name]}}>{t.type.name.toUpperCase()}</div>)}
-							</div>
-							<div className='text-container-individual'>
-								<p className='text'>Ability: <br></br><p className='text-content'>{capsFirstLetter(pokemon.abilities[0].ability.name)}</p></p>
-								{pokemon["held_items"].length > 0 ? <p className='text'>Items: <br></br><ul>{pokemon["held_items"].map(i => <li className='text-content'>{capsFirstLetter(i.item.name)}</li>)}</ul></p> : null}
 							</div>
 							{/*THIS BUTTON SHOULD ONLY EXIST IF THERE IS A USER LOGGED IN BECAUSE ONLY LOGGED USERS CAN MAKE REVIEWS.*/}
 							<div className='button-container'>{user && <Button data-cy={`review-button-${pokemon.name}`} className={classes.reviewButton} onClick={() => handleReview(pokemon)}>Review</Button>}</div>
@@ -75,11 +70,19 @@ const IndividualPokemon = () => {
 						<div className='text-indiv-container'>
 							<p className='text-info-id'>#{pokemon.id}</p>
 							<p className='text-info'>{capsFirstLetter(pokemon.name)}</p>
-							{pokemon.stats.map(s => (
-								<p className='text-info' key={s.stat.name}>{capsFirstLetter(s.stat.name)}: {s.base_stat}</p>
-							))}
+							<div className='stats-indiv'>
+								{pokemon.stats.map(s => (
+									<div>
+										<p className='text-info-stats-name' key={s.stat.name}>{capsFirstLetter(s.stat.name)}:</p>
+										<p className='text-info-stats'>{s.base_stat}</p>
+									</div>
+								))}
+							</div>
+							<div className='text-container-individual'>
+								<p className='text-ability'>Ability:</p>
+								<p className='text-content'>{capsFirstLetter(pokemon.abilities[0].ability.name)}</p>
+							</div>
 						</div>
-					</div>
         </div>
         )}
     </div>
