@@ -8,7 +8,7 @@ html, body {
 .root-form {
 	display: flex;
 	justify-content: center;
-	margin-top: 2rem;
+	margin-top: 7.5rem;
 }
 
 .error-form {
@@ -27,12 +27,19 @@ html, body {
   font-family: 'Cairo';
   font-weight: 'bolder';
   font-size: 1.2vw;
-  color: black;
+  color: white;
 	line-height: 50%;
 	text-align: center;
+	background-color: black;
+	border-color: white;
+	border-radius: 5px;
 	height: 30px;
 	width: 60px;
 	margin-left: 5px;
+}
+
+.input-button:hover {
+	cursor: pointer;
 }
 
 .filter-form {
